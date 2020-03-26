@@ -1,0 +1,21 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper
+        PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+        "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.lingfen.website.blog.mapper.TypeMapper">
+    <select id="selectTypeByName" resultType="com.lingfen.website.blog.bean.Type">
+        select id,name from blog.type where name=#{name} limit 1
+    </select>
+    <select id="getAllType" resultMap="type">
+        select * from type
+    </select>
+    <select id="selectById" resultType="com.lingfen.website.blog.bean.Type">
+        select * from type where id=#{id} limit 1
+    </select>
+    <delete id="deleteById" >
+        delete from type where id=#{id} limit 1
+    </delete>
+    <resultMap id="type" type="com.lingfen.website.blog.bean.Type">
+
+    </resultMap>
+</mapper>
