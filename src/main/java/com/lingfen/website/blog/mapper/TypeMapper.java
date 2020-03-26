@@ -10,7 +10,7 @@ public interface TypeMapper extends Mapper<Type> {
     Type selectTypeByName(@Param("name") String name);
     List<Type> getAllType();
 
-    int deleteById(@Param("id") int id);
+    int deleteTypeById(@Param("id") int id);
 
-    Type selectById(@Param("id") int id);
+    Type selectTypeById(@Param("id") int id);
 }

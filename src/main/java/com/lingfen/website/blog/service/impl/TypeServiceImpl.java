@@ -37,7 +37,7 @@ public class TypeServiceImpl implements TypeService {
 
     @Override
     public int deleteType(int id) {
-        int result = typeMapper.deleteById(id);
+        int result = typeMapper.deleteTypeById(id);
         return result;
     }
 
@@ -49,7 +49,7 @@ public class TypeServiceImpl implements TypeService {
 
     @Override
     public Type selectTypeById(int id) {
-        Type result = typeMapper.selectById(id);
+        Type result = typeMapper.selectTypeById(id);
         return result;
     }
 }

@@ -9,10 +9,10 @@
     <select id="getAllType" resultMap="type">
         select * from type
     </select>
-    <select id="selectById" resultType="com.lingfen.website.blog.bean.Type">
+    <select id="selectTypeById" resultType="com.lingfen.website.blog.bean.Type">
         select * from type where id=#{id} limit 1
     </select>
-    <delete id="deleteById" >
+    <delete id="deleteTypeById" >
         delete from type where id=#{id} limit 1
     </delete>
     <resultMap id="type" type="com.lingfen.website.blog.bean.Type">

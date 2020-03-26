@@ -47,23 +47,18 @@
   <!--中间内容-->
   <div  class="m-container-small m-padded-tb-big">
     <div class="ui container">
-      <form action="#" method="post"  th:object="${tag}" th:action="*{id}==null ? @{/admin/tags} : @{/admin/tags/{id}(id=*{id})} "  class="ui form">
-        <input type="hidden" name="id" th:value="*{id}">
+      <form action="#" method="post" th:action="@{/admin/tags/add}" class="ui form">
+      <!--<form action="#" method="post"  th:object="${tag}" th:action="*{id}==null ? @{/admin/tags} : @{/admin/tags/{id}(id=*{id})} "  class="ui form">-->
+        <!--<input type="hidden" name="id" th:value="*{id}">-->
         <div class=" field">
           <div class="ui left labeled input">
             <label class="ui teal basic label">名称</label>
-            <input type="text" name="name" placeholder="分类名称" th:value="*{name}" >
+            <input type="text" th:name="name" placeholder="分类名称" >
           </div>
         </div>
 
         <div class="ui error message"></div>
-        <!--/*/
-        <div class="ui negative message" th:if="${#fields.hasErrors('name')}"  >
-          <i class="close icon"></i>
-          <div class="header">验证失败</div>
-          <p th:errors="*{name}">提交信息不符合规则</p>
-        </div>
-         /*/-->
+
         <div class="ui right aligned container">
           <button type="button" class="ui button" onclick="window.history.go(-1)" >返回</button>
           <button class="ui teal submit button">提交</button>
