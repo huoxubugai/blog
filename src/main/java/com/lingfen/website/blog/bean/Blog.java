@@ -1,13 +1,15 @@
 package com.lingfen.website.blog.bean;
 
 import javax.persistence.GeneratedValue;
+import javax.persistence.GenerationType;
 import javax.persistence.Id;
+import javax.persistence.Transient;
 import java.util.Date;
 
 public class Blog {
 
     @Id
-    @GeneratedValue
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;  //主键
     private String title; //博客标题
     private String content; //博客内容
@@ -21,8 +23,55 @@ public class Blog {
     private boolean recommend; //是否推荐
     private Date createTime; //创建时间
     private Date updateTime; //更新时间
+    private Integer typeId;
+    private Integer userId;
+    private String description;
 
 
+    @Transient
+    private Type type;
+    @Transient
+    private User user;
+
+    public String getDescription() {
+        return description;
+    }
+
+    public void setDescription(String description) {
+        this.description = description;
+    }
+
+    public User getUser() {
+        return user;
+    }
+
+    public void setUser(User user) {
+        this.user = user;
+    }
+
+    public Type getType() {
+        return type;
+    }
+
+    public void setType(Type type) {
+        this.type = type;
+    }
+
+    public Integer getTypeId() {
+        return typeId;
+    }
+
+    public void setTypeId(Integer typeId) {
+        this.typeId = typeId;
+    }
+
+    public Integer getUserId() {
+        return userId;
+    }
+
+    public void setUserId(Integer userId) {
+        this.userId = userId;
+    }
 
     public Blog() {
     }
@@ -130,7 +179,7 @@ public class Blog {
     public void setUpdateTime(Date updateTime) {
         this.updateTime = updateTime;
     }
-    
+
     @Override
     public String toString() {
         return "Blog{" +

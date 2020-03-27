@@ -81,7 +81,7 @@
                         <div th:if="${tagInfo.hasNextPage}">
                             <a th:href="@{/admin/tags(pageNum=${tagInfo.hasNextPage}?${tagInfo.nextPage}:${tagInfo.pages})}">下一页</a>
                         </div>
-                        >
+
                     </div>
                     <a href="#" th:href="@{/admin/tags/input}" class="ui mini right floated teal basic button">新增</a>
                 </th>

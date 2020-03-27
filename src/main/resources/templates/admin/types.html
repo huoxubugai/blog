@@ -64,7 +64,7 @@
                 <td th:text="${type.name}">刻意练习清单</td>
                 <td>
                     <a href="#" th:href="@{/admin/types/{id}/input(id=${type.id})}" class="ui mini purple basic button">编辑</a>
-                    <a href="#" id="delete" onclick="return confirm('您确定要删除吗？')"
+                    <a href="#" id="delete" onclick="return confirm('你确定要删除吗？')"
                        th:href="@{/admin/types/{id}/delete(id=${type.id})}" class="ui mini red basic button">删除</a>
                 </td>
             </tr>
@@ -92,7 +92,7 @@
                         <div th:if="${pageInfo.hasNextPage}">
                             <a th:href="@{/admin/types(pageNum=${pageInfo.hasNextPage}?${pageInfo.nextPage}:${pageInfo.pages})}">下一页</a>
                         </div>
-                        >
+
                     </div>
                     <a href="#" th:href="@{/admin/types/input}" class="ui mini right floated teal basic button">新增</a>
                 </th>

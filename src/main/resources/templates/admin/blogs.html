@@ -95,25 +95,31 @@
           </tr>
           </thead>
           <tbody>
-          <tr th:each="blog,iterStat : ${page.content}">
-            <td th:text="${iterStat.count}">1</td>
+          <tr th:each="blog:${pageInfo.list}">
+            <td th:text="${blog.id}">1</td>
             <td th:text="${blog.title}">刻意练习清单</td>
             <td th:text="${blog.type.name}">认知升级</td>
-            <td th:text="${blog.recommend} ? '是':'否'">是</td>
-            <td th:text="${blog.published} ? '发布':'草稿'">草稿</td>
-            <td th:text="${blog.updateTime}">2017-10-02 09:45</td>
+            <td th:text="${blog.isRecommend()} ? '是':'否'">是</td>
+            <td th:text="${blog.isPublished()} ? '发布':'草稿'">草稿</td>
+            <td th:text="${blog.createTime}">2019-10-02 09:45</td>
             <td>
               <a href="#" th:href="@{/admin/blogs/{id}/input(id=${blog.id})}" class="ui mini teal basic button">编辑</a>
-              <a href="#" th:href="@{/admin/blogs/{id}/delete(id=${blog.id})}" class="ui mini red basic button">删除</a>
+              <a href="#" id="delete" onclick="return confirm('你确定要删除该条博客吗？')" th:href="@{/admin/blogs/{id}/delete(id=${blog.id})}" class="ui mini red basic button">删除</a>
             </td>
           </tr>
           </tbody>
           <tfoot>
           <tr>
             <th colspan="7">
-              <div class="ui mini pagination menu" th:if="${page.totalPages}>1" >
-                <a onclick="page(this)" th:attr="data-page=${page.number}-1" class="item" th:unless="${page.first}">上一页</a>
-                <a onclick="page(this)" th:attr="data-page=${page.number}+1" class=" item" th:unless="${page.last}">下一页</a>
+              <div class="ui mini pagination menu" th:if="${pageInfo.pages}>1" >
+                <div th:if="${pageInfo.hasPreviousPage}">
+                  <a th:href="@{/admin/types(pageNum=${pageInfo.hasPreviousPage}?${pageInfo.prePage}:1)}">上一页</a>
+                </div>
+                <div th:if="${pageInfo.hasNextPage}">
+                  <a th:href="@{/admin/types(pageNum=${pageInfo.hasNextPage}?${pageInfo.nextPage}:${pageInfo.pages})}">下一页</a>
+                </div>
+                <!--<a onclick="page(this)" th:attr="data-page=${page.number}-1" class="item" th:unless="${page.first}">上一页</a>-->
+                <!--<a onclick="page(this)" th:attr="data-page=${page.number}+1" class=" item" th:unless="${page.last}">下一页</a>-->
               </div>
               <a href="#" th:href="@{/admin/blogs/input}" class="ui mini right floated teal basic button">新增</a>
             </th>

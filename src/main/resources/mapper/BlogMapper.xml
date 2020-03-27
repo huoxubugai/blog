@@ -1,0 +1,13 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper
+        PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+        "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.lingfen.website.blog.mapper.BlogMapper">
+    <update id="updateBlog">
+      update blog set title=#{blog.title},content=#{blog.content},first_picture=#{blog.firstPicture},flag=#{blog.flag},
+      appreciation=#{blog.appreciation},share_statement=#{blog.shareStatement},commentabled=#{blog.commentabled},
+      published=#{blog.published},recommend=#{blog.recommend},update_time=#{blog.updateTime},type_id=#{blog.typeId},description=#{blog.description}
+      where id=#{blog.id}
+    </update>
+
+</mapper>
