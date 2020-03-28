@@ -12,6 +12,9 @@
     <select id="selectTypeById" resultType="com.lingfen.website.blog.bean.Type">
         select * from type where id=#{id} limit 1
     </select>
+    <select id="getPreViewType" resultMap="type">
+        select * from type order by blogs desc limit #{typeNums}
+    </select>
     <delete id="deleteTypeById" >
         delete from type where id=#{id} limit 1
     </delete>

@@ -17,4 +17,11 @@ public class UserServiceImpl implements UserService {
         User user = userMapper.getUserByUsername(username);
         return user==null?null:user.getPassword().equals(MD5util.code(password))?user:null;
     }
+
+    @Override
+    public User getUserById(Integer userId) {
+        User user = new User();
+        user.setId(userId);
+        return userMapper.selectByPrimaryKey(user);
+    }
 }
