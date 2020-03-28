@@ -52,4 +52,10 @@ public class TypeServiceImpl implements TypeService {
         Type result = typeMapper.selectTypeById(id);
         return result;
     }
+
+    @Override
+    public List<Type> getPreViewType(int typeNums) {
+        List<Type> previewTypes=typeMapper.getPreViewType(typeNums);
+        return previewTypes;
+    }
 }

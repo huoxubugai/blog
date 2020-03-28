@@ -18,4 +18,7 @@ public interface TypeService {
     Type selectTypeByName(String name);
 
     Type selectTypeById(int id);
+
+    List<Type> getPreViewType(int typeNums);
+
 }

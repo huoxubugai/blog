@@ -1,7 +1,9 @@
 package com.lingfen.website.blog.service.impl;
 
 import com.lingfen.website.blog.bean.Blog;
+import com.lingfen.website.blog.bean.helpbean.PreviewBlog;
 import com.lingfen.website.blog.bean.Type;
+import com.lingfen.website.blog.bean.helpbean.RecommendPreviewBlog;
 import com.lingfen.website.blog.mapper.BlogMapper;
 import com.lingfen.website.blog.mapper.TypeMapper;
 import com.lingfen.website.blog.service.BlogService;
@@ -56,5 +58,17 @@ public class BlogServiceImpl implements BlogService {
         blog.setUpdateTime(new Date());
         int result = blogMapper.updateBlog(blog);
         return result;
+    }
+
+    @Override
+    public List<PreviewBlog> getPreviewBlog() {
+        List<PreviewBlog> previewBlogs = blogMapper.getPreviewBlog();
+        return previewBlogs;
+    }
+
+    @Override
+    public List<RecommendPreviewBlog> getRecommendPreviewBlog(int recommendBlogNums) {
+       List<RecommendPreviewBlog> recommendPreviewBlogs= blogMapper.getRecommendPreviewBlog(recommendBlogNums);
+        return recommendPreviewBlogs;
     }
 }

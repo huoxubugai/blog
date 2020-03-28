@@ -9,6 +9,7 @@ public class Tag {
     @GeneratedValue
     private int id;
     private String name;
+    private String blogNums;//该tag对应的博客数量
 
     public Tag() {
     }
@@ -19,6 +20,14 @@ public class Tag {
 
     public void setId(int id) {
         this.id = id;
+    }
+
+    public String getBlogNums() {
+        return blogNums;
+    }
+
+    public void setBlogNums(String blogNums) {
+        this.blogNums = blogNums;
     }
 
     public String getName() {

@@ -13,4 +13,6 @@ public interface TypeMapper extends Mapper<Type> {
     int deleteTypeById(@Param("id") int id);
 
     Type selectTypeById(@Param("id") int id);
+
+    List<Type> getPreViewType(@Param("typeNums") int typeNums);
 }
