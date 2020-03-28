@@ -36,8 +36,8 @@ public class IndexController {
     public String index(Model model, @RequestParam(defaultValue = "1",value = "pageNum") Integer pageNum){
         PageHelper.startPage(pageNum, 5);
         List<PreviewBlog> previewBlogs = blogService.getPreviewBlog();//获得首页的博客预览信息
-        List<Type> types = typeService.getPreViewType(4);
-        List<Tag> tags = tagService.getAllTag();
+        List<Type> types = typeService.getPreViewType(4); //获得博客数量前四的type
+        List<Tag> tags = tagService.getPreViewTag(9);//获得博客数量前9的tag
         List<RecommendPreviewBlog> recommendPreviewBlogs=blogService.getRecommendPreviewBlog(4);
         PageInfo<PreviewBlog> pageInfo = new PageInfo<>(previewBlogs);
         model.addAttribute("pageInfo", pageInfo);
@@ -51,6 +51,8 @@ public class IndexController {
     public String blog() {
         return "blog";
     }
+
+    //点进首页的一篇博客
     @GetMapping("/blog/{id}")
     public String showBlog(@PathVariable Long id,Model model){
         Blog blog = blogService.getBlogById(id);
@@ -58,5 +60,18 @@ public class IndexController {
         model.addAttribute("blog", blog);
         model.addAttribute("user", user);
         return "blog";
+    }
+
+    //点进首页的分类
+    @GetMapping("/types/{typeId}")
+    public String getBlogByType(@PathVariable int typeId,Model model, @RequestParam(defaultValue = "1",value = "pageNum") Integer pageNum){
+        PageHelper.startPage(pageNum, 5);
+        List<PreviewBlog> previewBlogs=blogService.getPreviewBlogByType(typeId);
+        PageInfo<PreviewBlog> pageInfo = new PageInfo<>(previewBlogs);
+        List<Type> types = typeService.getAllType();
+        model.addAttribute("types", types);
+        model.addAttribute("pageInfo", pageInfo);
+        model.addAttribute("activeTypeId", typeId);
+        return "/types";
     }
 }

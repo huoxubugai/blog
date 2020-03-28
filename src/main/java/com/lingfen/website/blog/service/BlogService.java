@@ -22,4 +22,7 @@ public interface BlogService {
 
     List<RecommendPreviewBlog> getRecommendPreviewBlog(int recommendBlogNums);
 
+    List<PreviewBlog> getPreviewBlogByType(int typeId);
+
+    List<PreviewBlog> getPreviewBlogByTag(int tagId);
 }

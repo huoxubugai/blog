@@ -20,6 +20,42 @@
       from blog
       where recommend=1 order by views desc limit #{recommendBlogNums}
     </select>
+    <select id="getPreviewBlogByType" resultMap="previewBlog">
+         select b.id,b.title,b.first_picture,b.views,b.update_time,b.type_id,b.user_id,b.description ,
+        t.name as type_name,u.avatar as user_avatar,u.nickname
+        from blog b,type t,user u
+        where b.type_id=t.id and b.user_id=u.id and b.type_id=#{typeId}
+    </select>
+    <select id="getPreviewBlogByTag" resultMap="previewBlog">
+SELECT
+
+	b.id,
+	b.title,
+	b.first_picture,
+	b.views,
+	b.update_time,
+	b.type_id,
+	b.user_id,
+	b.description,
+	t.name AS type_name,
+	u.avatar AS user_avatar,
+	u.nickname
+FROM
+	blog b,
+	type t,
+	user u
+WHERE
+	b.type_id = t.id
+AND b.user_id = u.id
+AND b.id IN (
+	SELECT
+		blog_id
+	FROM
+		blog_relation_tag
+	WHERE
+		tag_id = #{tagId}
+)
+    </select>
     <resultMap id="previewBlog" type="com.lingfen.website.blog.bean.helpbean.PreviewBlog">
     </resultMap>
     <resultMap id="recommendPreviewBlog" type="com.lingfen.website.blog.bean.helpbean.RecommendPreviewBlog">

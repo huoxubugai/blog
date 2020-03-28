@@ -14,4 +14,8 @@ public interface BlogMapper extends Mapper<Blog> {
     List<PreviewBlog> getPreviewBlog();
 
     List<RecommendPreviewBlog> getRecommendPreviewBlog(@Param("recommendBlogNums") int recommendBlogNums);
+
+    List<PreviewBlog> getPreviewBlogByType(@Param("typeId") int typeId);
+
+    List<PreviewBlog> getPreviewBlogByTag(@Param("tagId") int tagId);
 }

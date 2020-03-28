@@ -34,7 +34,7 @@ public class BlogServiceImpl implements BlogService {
 
     @Override
     public int deleteBlogById(Long id) {
-        Blog blog=new Blog();
+        Blog blog = new Blog();
         blog.setId(id);
         int result = blogMapper.deleteByPrimaryKey(blog);
         return result;
@@ -48,7 +48,7 @@ public class BlogServiceImpl implements BlogService {
 
     @Override
     public Blog getBlogById(long id) {
-        Blog blog=new Blog();
+        Blog blog = new Blog();
         blog.setId(id);
         return blogMapper.selectByPrimaryKey(blog);
     }
@@ -68,7 +68,20 @@ public class BlogServiceImpl implements BlogService {
 
     @Override
     public List<RecommendPreviewBlog> getRecommendPreviewBlog(int recommendBlogNums) {
-       List<RecommendPreviewBlog> recommendPreviewBlogs= blogMapper.getRecommendPreviewBlog(recommendBlogNums);
+        List<RecommendPreviewBlog> recommendPreviewBlogs = blogMapper.getRecommendPreviewBlog(recommendBlogNums);
         return recommendPreviewBlogs;
+    }
+
+    @Override
+    public List<PreviewBlog> getPreviewBlogByType(int typeId) {
+
+        List<PreviewBlog> previewBlogs = blogMapper.getPreviewBlogByType(typeId);
+        return previewBlogs;
+    }
+
+    @Override
+    public List<PreviewBlog> getPreviewBlogByTag(int tagId) {
+        List<PreviewBlog> previewBlogs = blogMapper.getPreviewBlogByTag(tagId);
+        return previewBlogs;
     }
 }

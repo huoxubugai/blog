@@ -43,4 +43,10 @@ public class TagServiceImpl implements TagService {
         int result = tagMapper.deleteTagById(id);
         return result;
     }
+
+    @Override
+    public List<Tag> getPreViewTag(int nums) {
+        List<Tag> previewTags=tagMapper.getPreViewTag(nums);
+        return previewTags;
+    }
 }

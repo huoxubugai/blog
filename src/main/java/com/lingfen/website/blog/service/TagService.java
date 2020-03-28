@@ -14,4 +14,6 @@ public interface TagService {
     Tag selectTagById(int id);
 
     int deleteTag(int id);
+
+    List<Tag> getPreViewTag(int nums);
 }

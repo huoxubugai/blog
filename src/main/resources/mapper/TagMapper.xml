@@ -12,6 +12,9 @@
     <select id="selectTagById" resultType="com.lingfen.website.blog.bean.Tag">
         select * from tag where id=#{id} limit 1
     </select>
+    <select id="getPreViewTag" resultMap="tag">
+        select * from tag order by blog_nums desc limit #{nums}
+    </select>
     <delete id="deleteTagById" >
         delete from tag where id=#{id} limit 1
     </delete>
