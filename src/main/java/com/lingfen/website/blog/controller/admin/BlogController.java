@@ -34,7 +34,9 @@ public class BlogController {
         PageHelper.startPage(pageNum, 5);
         List<Blog> blogs = blogService.getAllBlog();
         PageInfo<Blog> pageInfo = new PageInfo<>(blogs);
+        List<Type> types = typeService.getAllType();
         model.addAttribute("pageInfo", pageInfo);
+        model.addAttribute("types", types);
         return "admin/blogs";
     }
 

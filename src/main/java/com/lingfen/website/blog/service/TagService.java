@@ -18,4 +18,6 @@ public interface TagService {
     List<Tag> getPreViewTag(int nums);
 
     int getMaxNumsBlogTagId();
+
+    int updateTag(Tag tag);
 }

@@ -48,11 +48,22 @@ public class TagController {
         return "redirect:/admin/tags/input";
     }
 
-
+    //到tag更新页面
     @GetMapping("/tags/{id}/input")
-    public  String update(@PathVariable int id, Model model){
+    public String toTagUpdatePage(@PathVariable int id, Model model) {
         model.addAttribute("tag", tagService.selectTagById(id));
-        return "admin/tags-input";
+        return "admin/tags-update";
+    }
+
+    @PostMapping("/tags/update")
+    public String update(Tag tag, RedirectAttributes attributes) {
+        int result = tagService.updateTag(tag);
+        if (result != 0) {
+            attributes.addFlashAttribute("message", "更新成功");
+        } else {
+            attributes.addFlashAttribute("message", "更新失败，请重试");
+        }
+        return "redirect:/admin/tags";
     }
 
     @GetMapping("/tags/{id}/delete")

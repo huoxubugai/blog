@@ -3,8 +3,11 @@
         PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
         "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
 <mapper namespace="com.lingfen.website.blog.mapper.TypeMapper">
+    <update id="updateType">
+        update type set name=#{type.name} where id=#{type.id}
+    </update>
     <select id="selectTypeByName" resultType="com.lingfen.website.blog.bean.Type">
-        select id,name from blog.type where name=#{name} limit 1
+        select * from blog.type where name=#{name} limit 1
     </select>
     <select id="getAllType" resultMap="type">
         select * from type order by blogs desc

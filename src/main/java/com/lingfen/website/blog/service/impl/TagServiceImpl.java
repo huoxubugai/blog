@@ -55,4 +55,10 @@ public class TagServiceImpl implements TagService {
        int result= tagMapper.getMaxNumsBlogTagId();
         return result;
     }
+
+    @Override
+    public int updateTag(Tag tag) {
+        int result = tagMapper.updateTag(tag);
+        return result;
+    }
 }

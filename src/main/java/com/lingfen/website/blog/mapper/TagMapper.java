@@ -18,4 +18,6 @@ public interface TagMapper extends Mapper<Tag> {
     List<Tag> getPreViewTag(@Param("nums") int nums);
 
     int getMaxNumsBlogTagId();
+
+    int updateTag(@Param("tag") Tag tag);
 }

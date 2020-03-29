@@ -53,13 +53,24 @@ public class TypeController {
         return "redirect:/admin/types/input";
     }
 
-
+    //到修改页面
     @GetMapping("/types/{id}/input")
-    public  String update(@PathVariable int id,Model model){
+    public String toTypeUpdatePage(@PathVariable int id, Model model) {
         model.addAttribute("type", typeService.selectTypeById(id));
-        return "admin/types-input";
+        return "admin/types-update";
     }
 
+    //进行修改
+    @PostMapping("/types/update")
+    public String updateType(Type type, RedirectAttributes attributes) {
+        int result = typeService.updateType(type);
+        if (result != 0) {
+            attributes.addFlashAttribute("message", "更新成功");
+        } else {
+            attributes.addFlashAttribute("message", "更新失败，请重试");
+        }
+        return "redirect:/admin/types";
+    }
     @GetMapping("/types/{id}/delete")
     public String delete(@PathVariable int id,RedirectAttributes attributes){
         int i = typeService.deleteType(id);

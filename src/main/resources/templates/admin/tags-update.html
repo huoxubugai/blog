@@ -1,10 +1,11 @@
 <!DOCTYPE html>
-<html lang="en" xmlns:th="http://www.w3.org/1999/xhtml">
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
 <head th:replace="admin/_fragments :: head(~{::title})">
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>标签管理</title>
+    <title>标签更新</title>
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/semantic-ui/2.2.4/semantic.min.css">
+    <link rel="stylesheet" href="../../static/lib/editormd/css/editormd.min.css">
     <link rel="stylesheet" href="../../static/css/me.css">
 </head>
 <body>
@@ -14,7 +15,7 @@
     <div class="ui container">
         <div class="ui inverted secondary stackable menu">
             <h2 class="ui teal header item">管理后台</h2>
-            <a href="#" class="active m-item item m-mobile-hide"><i class="mini home icon"></i>博客</a>
+            <a href="#" class=" m-item item m-mobile-hide"><i class="mini home icon"></i>博客</a>
             <a href="#" class=" m-item item m-mobile-hide"><i class="mini idea icon"></i>分类</a>
             <a href="#" class="m-item item m-mobile-hide"><i class="mini tags icon"></i>标签</a>
             <div class="right m-item m-mobile-hide menu">
@@ -38,8 +39,8 @@
 <div class="ui attached pointing menu">
     <div class="ui container">
         <div class="right menu">
-            <a href="#" th:href="@{/admin/tags/input}" class="item">新增</a>
-            <a href="#" th:href="@{/admin/tags}" class="teal active item">列表</a>
+            <a href="#" th:href="@{/admin/tags/input}" class="active item">新增</a>
+            <a href="#" th:href="@{/admin/tags}" class="teal  item">列表</a>
         </div>
     </div>
 </div>
@@ -47,50 +48,37 @@
 <!--中间内容-->
 <div class="m-container-small m-padded-tb-big">
     <div class="ui container">
-        <div class="ui success message" th:unless="${#strings.isEmpty(message)}">
-            <i class="close icon"></i>
-            <div class="header">提示：</div>
-            <p th:text="${message}">恭喜，操作成功！</p>
-        </div>
-        <!--<table class="ui compact teal table">-->
-        <table class="ui celled table">
-            <thead>
-            <tr>
-                <th>名称</th>
-                <th>操作</th>
-            </tr>
-            </thead>
-            <tbody>
-            <tr th:each="tag:${tagInfo.list}">
-                <td th:text="${tag.name}">刻意练习清单</td>
-                <td>
-                    <a href="#" th:href="@{/admin/tags/{id}/input(id=${tag.id})}"
-                       class="ui mini purple basic button">编辑</a>
-                    <a href="#" id="delete" onclick="return confirm('您确定要删除吗？')"
-                       th:href="@{/admin/tags/{id}/delete(id=${tag.id})}" class="ui mini red basic button">删除</a>
-                </td>
-            </tr>
-            </tbody>
-            <tfoot>
-            <tr>
-                <th colspan="6">
-                    <div class="ui mini pagination menu" th:if="${tagInfo.pages}>1">
-                        <div th:if="${tagInfo.hasPreviousPage}">
-                            <a th:href="@{/admin/tags(pageNum=${tagInfo.hasPreviousPage}?${tagInfo.prePage}:1)}">上一页</a>
-                        </div>
-                        <div th:if="${tagInfo.hasNextPage}">
-                            <a th:href="@{/admin/tags(pageNum=${tagInfo.hasNextPage}?${tagInfo.nextPage}:${tagInfo.pages})}">下一页</a>
-                        </div>
+        <form action="#" method="post" th:action="@{/admin/tags/update}" class="ui form">
+            <div class=" field">
+                <div class="ui left labeled input">
+                    <input type="hidden" name="id" th:value="${tag.id}">
+                    <label class="ui teal basic label">名称</label>
+                    <input type="text" th:name="name" placeholder="标签名称" th:value="${tag.name}">
+                </div>
+            </div>
 
-                    </div>
-                    <a href="#" th:href="@{/admin/tags/input}" class="ui mini right floated teal basic button">新增</a>
-                </th>
-            </tr>
-            </tfoot>
-        </table>
+            <div class="ui error message"></div>
+
+            <div class="ui error mini message"></div>
+            <div class="ui mini negative message" th:unless="${#strings.isEmpty(message)}" th:text="${message}">
+                用户名和密码错误
+            </div>
+
+            <div class="ui right aligned container">
+                <button type="button" class="ui button" onclick="window.history.go(-1)">返回</button>
+                <button class="ui teal submit button">提交</button>
+            </div>
+
+        </form>
     </div>
 </div>
 
+<br>
+<br>
+<br>
+<br>
+<br>
+<br>
 <br>
 <br>
 <!--底部footer-->
@@ -100,7 +88,7 @@
             <div class="three wide column">
                 <div class="ui inverted link list">
                     <div class="item">
-                        <img src="../../static/images/wechat.jpg" class="ui rounded image" alt="" style="width: 110px">
+                        <img src="../static/images/wechat.jpg" class="ui rounded image" alt="" style="width: 110px">
                     </div>
                 </div>
             </div>
@@ -129,11 +117,14 @@
     </div>
 
 </footer>
+
 <!--/*/<th:block th:replace="_fragments :: script">/*/-->
 <script src="https://cdn.jsdelivr.net/npm/jquery@3.2/dist/jquery.min.js"></script>
 <script src="https://cdn.jsdelivr.net/semantic-ui/2.2.4/semantic.min.js"></script>
 <!--/*/</th:block>/*/-->
+
 <script>
+
     $('.menu.toggle').click(function () {
         $('.m-item').toggleClass('m-mobile-hide');
     });
@@ -142,13 +133,18 @@
         on: 'hover'
     });
 
-    //消息提示关闭初始化
-    $('.message .close')
-        .on('click', function () {
-            $(this)
-                .closest('.message')
-                .transition('fade');
-        });
+    $('.ui.form').form({
+        fields: {
+            title: {
+                identifier: 'name',
+                rules: [{
+                    type: 'empty',
+                    prompt: '请输入分类名称'
+                }]
+            }
+        }
+    });
+
 </script>
 </body>
 </html>

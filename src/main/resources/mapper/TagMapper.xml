@@ -3,8 +3,11 @@
         PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
         "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
 <mapper namespace="com.lingfen.website.blog.mapper.TagMapper">
+    <update id="updateTag">
+        update tag set name=#{tag.name} where id=#{tag.id}
+    </update>
     <select id="selectTagByName" resultType="com.lingfen.website.blog.bean.Tag">
-        select id,name from tag where name=#{name} limit 1
+        select * from tag where name=#{name} limit 1
     </select>
     <select id="getAllTag" resultMap="tag">
         select * from tag order by blog_nums desc

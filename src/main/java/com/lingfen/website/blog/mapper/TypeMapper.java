@@ -17,4 +17,6 @@ public interface TypeMapper extends Mapper<Type> {
     List<Type> getPreViewType(@Param("typeNums") int typeNums);
 
     int getMaxNumsBlogTypeId();
+
+    int updateType(@Param("type") Type type);
 }
