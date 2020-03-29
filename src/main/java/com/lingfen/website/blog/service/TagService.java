@@ -16,4 +16,6 @@ public interface TagService {
     int deleteTag(int id);
 
     List<Tag> getPreViewTag(int nums);
+
+    int getMaxNumsBlogTagId();
 }

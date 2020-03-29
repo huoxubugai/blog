@@ -1,6 +1,7 @@
 package com.lingfen.website.blog.service.impl;
 
 import com.lingfen.website.blog.bean.Blog;
+import com.lingfen.website.blog.bean.helpbean.ArchivesBlogBean;
 import com.lingfen.website.blog.bean.helpbean.PreviewBlog;
 import com.lingfen.website.blog.bean.Type;
 import com.lingfen.website.blog.bean.helpbean.RecommendPreviewBlog;
@@ -10,8 +11,11 @@ import com.lingfen.website.blog.service.BlogService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
+import javax.swing.text.BadLocationException;
 import java.util.Date;
+import java.util.HashMap;
 import java.util.List;
+import java.util.Map;
 
 @Service
 public class BlogServiceImpl implements BlogService {
@@ -83,5 +87,23 @@ public class BlogServiceImpl implements BlogService {
     public List<PreviewBlog> getPreviewBlogByTag(int tagId) {
         List<PreviewBlog> previewBlogs = blogMapper.getPreviewBlogByTag(tagId);
         return previewBlogs;
+    }
+
+    @Override
+    public int getTotalPublishedBlogNums() {
+       int nums= blogMapper.getTotalPublishedBlogNums();
+        return nums;
+    }
+
+    @Override
+    public Map<String, List<ArchivesBlogBean>> getArchivesBlog() {
+        Map<String, List<ArchivesBlogBean>> archivesBlog = new HashMap<>();
+        List<String> years = blogMapper.getBlogYears(); //拿到博客的年份列表
+        List<ArchivesBlogBean> archivesBlogBeansByYear; //每一年份对应的归档博客
+        for (String year: years) {
+            archivesBlogBeansByYear = blogMapper.getArchivesBlog(year); //根据year拿到该年份的归档博客
+            archivesBlog.put(year, archivesBlogBeansByYear); //将年份和对应的归档博客按k v放进map中
+        }
+        return archivesBlog;
     }
 }

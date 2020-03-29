@@ -21,4 +21,6 @@ public interface TypeService {
 
     List<Type> getPreViewType(int typeNums);
 
+    int getMaxNumsBlogTypeId();
+
 }

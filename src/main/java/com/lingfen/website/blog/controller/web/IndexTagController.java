@@ -1,4 +1,4 @@
-package com.lingfen.website.blog.controller.tag;
+package com.lingfen.website.blog.controller.web;
 
 import com.github.pagehelper.PageHelper;
 import com.github.pagehelper.PageInfo;
@@ -23,6 +23,10 @@ public class IndexTagController {
     TagService tagService;
     @GetMapping("/tags/{tagId}")
     public String getBlogByTag(@PathVariable int tagId, Model model, @RequestParam(defaultValue = "1",value = "pageNum") Integer pageNum){
+        //首页导航进去时 tagId=-1,变更为博客数最多的tagId
+        if(tagId==-1){
+             tagId=tagService.getMaxNumsBlogTagId();
+        }
         PageHelper.startPage(pageNum, 5);
         List<PreviewBlog> previewBlogs=blogService.getPreviewBlogByTag(tagId);
         PageInfo<PreviewBlog> pageInfo = new PageInfo<>(previewBlogs);

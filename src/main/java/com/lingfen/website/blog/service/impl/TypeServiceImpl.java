@@ -58,4 +58,10 @@ public class TypeServiceImpl implements TypeService {
         List<Type> previewTypes=typeMapper.getPreViewType(typeNums);
         return previewTypes;
     }
+
+    @Override
+    public int getMaxNumsBlogTypeId() {
+        int typeId=typeMapper.getMaxNumsBlogTypeId();
+        return typeId;
+    }
 }

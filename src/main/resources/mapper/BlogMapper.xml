@@ -56,9 +56,26 @@ AND b.id IN (
 		tag_id = #{tagId}
 )
     </select>
+    <select id="getTotalPublishedBlogNums" resultType="java.lang.Integer">
+        select count(id) as nums from blog where published=1
+    </select>
+    <select id="getBlogYears" resultMap="years">
+        select DISTINCT DATE_FORMAT(create_time,"%Y") as year from blog
+    </select>
+    <select id="getArchivesBlog" resultMap="archivesBlog">
+        select id,title,flag, DATE_FORMAT(create_time,"%b %d") as date ,description from blog
+        where published=1
+        and DATE_FORMAT(create_time,"%Y") =#{year}
+    </select>
+
+
     <resultMap id="previewBlog" type="com.lingfen.website.blog.bean.helpbean.PreviewBlog">
     </resultMap>
     <resultMap id="recommendPreviewBlog" type="com.lingfen.website.blog.bean.helpbean.RecommendPreviewBlog">
+    </resultMap>
+    <resultMap id="years" type="string">
+    </resultMap>
+    <resultMap id="archivesBlog" type="com.lingfen.website.blog.bean.helpbean.ArchivesBlogBean">
     </resultMap>
 
 

@@ -7,13 +7,16 @@
         select id,name from blog.type where name=#{name} limit 1
     </select>
     <select id="getAllType" resultMap="type">
-        select * from type
+        select * from type order by blogs desc
     </select>
     <select id="selectTypeById" resultType="com.lingfen.website.blog.bean.Type">
         select * from type where id=#{id} limit 1
     </select>
     <select id="getPreViewType" resultMap="type">
         select * from type order by blogs desc limit #{typeNums}
+    </select>
+    <select id="getMaxNumsBlogTypeId" resultType="java.lang.Integer">
+        select id from type where blogs in(select max(blogs) from type) limit 1
     </select>
     <delete id="deleteTypeById" >
         delete from type where id=#{id} limit 1

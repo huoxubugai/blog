@@ -49,4 +49,10 @@ public class TagServiceImpl implements TagService {
         List<Tag> previewTags=tagMapper.getPreViewTag(nums);
         return previewTags;
     }
+
+    @Override
+    public int getMaxNumsBlogTagId() {
+       int result= tagMapper.getMaxNumsBlogTagId();
+        return result;
+    }
 }

@@ -7,13 +7,17 @@
         select id,name from tag where name=#{name} limit 1
     </select>
     <select id="getAllTag" resultMap="tag">
-        select * from tag
+        select * from tag order by blog_nums desc
     </select>
     <select id="selectTagById" resultType="com.lingfen.website.blog.bean.Tag">
         select * from tag where id=#{id} limit 1
     </select>
     <select id="getPreViewTag" resultMap="tag">
         select * from tag order by blog_nums desc limit #{nums}
+    </select>
+    <select id="getMaxNumsBlogTagId" resultType="java.lang.Integer">
+        select id from tag where blog_nums in
+        (SELECT max(blog_nums) from tag) limit 1
     </select>
     <delete id="deleteTagById" >
         delete from tag where id=#{id} limit 1

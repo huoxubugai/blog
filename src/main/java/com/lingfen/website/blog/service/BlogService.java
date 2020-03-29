@@ -1,10 +1,12 @@
 package com.lingfen.website.blog.service;
 
 import com.lingfen.website.blog.bean.Blog;
+import com.lingfen.website.blog.bean.helpbean.ArchivesBlogBean;
 import com.lingfen.website.blog.bean.helpbean.PreviewBlog;
 import com.lingfen.website.blog.bean.helpbean.RecommendPreviewBlog;
 
 import java.util.List;
+import java.util.Map;
 
 public interface BlogService {
 
@@ -25,4 +27,8 @@ public interface BlogService {
     List<PreviewBlog> getPreviewBlogByType(int typeId);
 
     List<PreviewBlog> getPreviewBlogByTag(int tagId);
+
+    int getTotalPublishedBlogNums();
+
+    Map<String, List<ArchivesBlogBean>> getArchivesBlog();
 }

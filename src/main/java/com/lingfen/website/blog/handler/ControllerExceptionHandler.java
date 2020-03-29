@@ -15,13 +15,14 @@ import javax.servlet.http.HttpServletRequest;
 public class ControllerExceptionHandler {
 
     private final Logger logger = LoggerFactory.getLogger(this.getClass());
+    /*拦截所有exception异常*/
     @ExceptionHandler(Exception.class)
-    public ModelAndView exceptionHandler(HttpServletRequest request,Exception e) throws Exception {
-        logger.error("Request Url:{},Exception:{}",request.getRequestURI(),e);
-        if(AnnotationUtils.findAnnotation(e.getClass(), ResponseStatus.class)!=null){
+    public ModelAndView exceptionHandler(HttpServletRequest request, Exception e) throws Exception {
+        logger.error("Request Url:{},Exception:{}", request.getRequestURL(), e);
+        if (AnnotationUtils.findAnnotation(e.getClass(), ResponseStatus.class) != null) {
             throw e;
         }
-        ModelAndView mv=new ModelAndView();
+        ModelAndView mv = new ModelAndView();
         mv.addObject("url", request.getRequestURI());
         mv.addObject("exception:", e);
         mv.setViewName("error/error");
