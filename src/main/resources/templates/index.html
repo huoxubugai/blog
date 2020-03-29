@@ -45,7 +45,7 @@
                             <h3 class="ui teal header">博客</h3>
                         </div>
                         <div class="right aligned column">
-                            共 <h2 class="ui orange header m-inline-block m-text-thin" th:text="${pageInfo.total}">
+                            共 <h2 class="ui orange header m-inline-block m-text-thin" th:text="${page.total}">
                             14 </h2> 篇
                         </div>
                     </div>
@@ -54,7 +54,7 @@
                 <!--content-->
                 <div class="ui attached  segment">
 
-                    <div class="ui padded vertical segment m-padded-tb-large" th:each="blog:${pageInfo.list}">
+                    <div class="ui padded vertical segment m-padded-tb-large" th:each="blog:${page.list}">
                         <div class="ui middle aligned mobile reversed stackable grid">
                             <div class="eleven wide column">
                                 <h3 class="ui header"><a href="#" th:href="@{/blog/{id}(id=${blog.id})}" target="_blank"
@@ -101,31 +101,64 @@
                 </div>
 
                 <!--footer-->
-                <div class="ui bottom attached segment" th:if="${pageInfo.pages}>1">
-                    <div class="ui middle aligned two column grid">
-                        <div class="column" th:if="${pageInfo.hasPreviousPage}">
-                            <div class="item"><a class="ui mini purple basic button"
-                                                 th:href="@{/(pageNum=${pageInfo.hasPreviousPage}?${pageInfo.prePage}:1)}">上一页</a>
-                            </div>
-                        </div>
-                        <div class="right aligned column" th:if="${pageInfo.hasNextPage}">
-                            <div class="item"><a class="ui mini purple basic button"
-                                                 th:href="@{/(pageNum=${pageInfo.hasNextPage}?${pageInfo.nextPage}:${pageInfo.pages})}">下一页</a>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-                <!--<div class="ui bottom attached segment" >-->
+                <!--<div class="ui bottom attached segment" th:if="${pageInfo.pages}>1">-->
                 <!--<div class="ui middle aligned two column grid">-->
-                <!--<div class="column">-->
-                <!--<a >上一页</a>-->
+                <!--<div class="column" th:if="${pageInfo.hasPreviousPage}">-->
+                <!--<div class="item"><a class="ui mini purple basic button"-->
+                <!--th:href="@{/(pageNum=${pageInfo.hasPreviousPage}?${pageInfo.prePage}:1)}">上一页</a>-->
                 <!--</div>-->
-                <!--<div class="right aligned column">-->
-                <!--<a >下一页</a>-->
+                <!--</div>-->
+                <!--<div class="right aligned column" th:if="${pageInfo.hasNextPage}">-->
+                <!--<div class="item"><a class="ui mini purple basic button"-->
+                <!--th:href="@{/(pageNum=${pageInfo.hasNextPage}?${pageInfo.nextPage}:${pageInfo.pages})}">下一页</a>-->
+                <!--</div>-->
                 <!--</div>-->
                 <!--</div>-->
                 <!--</div>-->
 
+                <!--分页组件-->
+                <div class="ui attached center aligned segment">
+                    <div class="ui pagination stackable menu">
+                        <a class="item" th:classappend="${page.isFirstPage} ? 'active teal'"
+                           th:href="@{/(pageNum=${page.navigateFirstPage})}">
+                            首页
+                        </a>
+                        <a class="item" th:unless="${page.isFirstPage}"
+                           th:href="@{/(pageNum=${page.prePage})}">
+                            上一页
+                        </a>
+                        <a class="item">
+                            第<h3 class="ui orange header m-inline-block m-text-thin"
+                                 th:text="${page.getPageNum()}">8</h3>页
+                        </a>
+                        <a class="item" th:unless="${page.isLastPage}"
+                           th:href="@{/(pageNum=${page.nextPage})}">
+                            下一页
+                        </a>
+                        <a class="item" th:classappend="${page.isLastPage} ? 'active teal'"
+                           th:href="@{/(pageNum=${page.navigateLastPage})}">
+                            尾页
+                        </a>
+                        <a class="item">
+                            共<h3 class="ui red header m-inline-block m-text-thin"
+                                 th:text="${page.pages}">8</h3>页
+                        </a>
+
+                        <form name="page" class="right item" action="#" th:action="@{/}"
+                              method="get" target="_blank">
+                            <div class="ui right labeled input">
+                                <div class="ui basic label">Go</div>
+                                <input type="text" name="pageNum" placeholder="页码..."
+                                       style="width: 80px;">
+                                <div class="ui basic label">页</div>
+                                <button class="ui icon button"><i onclick="document.forms['page'].submit()"
+                                                                  class="right arrow icon"></i></button>
+                            </div>
+                        </form>
+                    </div>
+                    <input type="hidden" id="first" th:value="${page.getPageNum()}"/>
+                    <input type="hidden" id="last" th:value="${page.pages}"/>
+                </div>
             </div>
 
             <!--右边的top-->
@@ -185,8 +218,9 @@
                         <i class="bookmark icon"></i>最新推荐
                     </div>
                     <div th:each="blog : ${recommendBlogs}">
-                        <div class="ui segment" >
-                            <a href="#" th:href="@{/blog/{id}(id=${blog.id})}" target="_blank" class="m-black m-text-thin"
+                        <div class="ui segment">
+                            <a href="#" th:href="@{/blog/{id}(id=${blog.id})}" target="_blank"
+                               class="m-black m-text-thin"
                                th:text="${blog.title}">用户故事</a>
                         </div>
                     </div>

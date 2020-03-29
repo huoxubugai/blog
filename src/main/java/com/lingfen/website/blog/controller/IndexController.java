@@ -40,7 +40,7 @@ public class IndexController {
         List<Tag> tags = tagService.getPreViewTag(9);//获得博客数量前9的tag
         List<RecommendPreviewBlog> recommendPreviewBlogs=blogService.getRecommendPreviewBlog(4);
         PageInfo<PreviewBlog> pageInfo = new PageInfo<>(previewBlogs);
-        model.addAttribute("pageInfo", pageInfo);
+        model.addAttribute("page", pageInfo);
         model.addAttribute("types", types);
         model.addAttribute("tags", tags);
         model.addAttribute("recommendBlogs", recommendPreviewBlogs);
@@ -62,20 +62,5 @@ public class IndexController {
         return "blog";
     }
 
-    //点进首页的分类
-    @GetMapping("/types/{typeId}")
-    public String getBlogByType(@PathVariable int typeId,Model model, @RequestParam(defaultValue = "1",value = "pageNum") Integer pageNum){
-        //首页导航进去时 typeId=-1,变更为博客数最多的typeId
-        if(typeId==-1){
-           typeId=typeService.getMaxNumsBlogTypeId();
-       }
-        PageHelper.startPage(pageNum, 5);
-        List<PreviewBlog> previewBlogs=blogService.getPreviewBlogByType(typeId);
-        PageInfo<PreviewBlog> pageInfo = new PageInfo<>(previewBlogs);
-        List<Type> types = typeService.getAllType();
-        model.addAttribute("types", types);
-        model.addAttribute("pageInfo", pageInfo);
-        model.addAttribute("activeTypeId", typeId);
-        return "/types";
-    }
+
 }
