@@ -12,10 +12,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import javax.swing.text.BadLocationException;
-import java.util.Date;
-import java.util.HashMap;
-import java.util.List;
-import java.util.Map;
+import java.util.*;
 
 @Service
 public class BlogServiceImpl implements BlogService {
@@ -97,7 +94,7 @@ public class BlogServiceImpl implements BlogService {
 
     @Override
     public Map<String, List<ArchivesBlogBean>> getArchivesBlog() {
-        Map<String, List<ArchivesBlogBean>> archivesBlog = new HashMap<>();
+        Map<String, List<ArchivesBlogBean>> archivesBlog = new LinkedHashMap<>(); //使用linkedHashMap保证按输入的顺序输出，为了让年份从大到小展示博客
         List<String> years = blogMapper.getBlogYears(); //拿到博客的年份列表
         List<ArchivesBlogBean> archivesBlogBeansByYear; //每一年份对应的归档博客
         for (String year: years) {

@@ -60,12 +60,13 @@ AND b.id IN (
         select count(id) as nums from blog where published=1
     </select>
     <select id="getBlogYears" resultMap="years">
-        select DISTINCT DATE_FORMAT(create_time,"%Y") as year from blog
+        select DISTINCT DATE_FORMAT(create_time,"%Y") as year from blog ORDER BY year desc
     </select>
     <select id="getArchivesBlog" resultMap="archivesBlog">
         select id,title,flag, DATE_FORMAT(create_time,"%b %d") as date ,description from blog
         where published=1
         and DATE_FORMAT(create_time,"%Y") =#{year}
+        order by date desc
     </select>
 
 
