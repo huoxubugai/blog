@@ -20,4 +20,9 @@ public interface TagService {
     int getMaxNumsBlogTagId();
 
     int updateTag(Tag tag);
+
+
+    List<Integer> getTagIdsByBlogId(long blogId);
+
+    List<Tag> getTagsByTagIds(List<Integer> tagIds);
 }

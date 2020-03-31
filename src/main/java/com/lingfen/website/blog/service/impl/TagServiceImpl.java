@@ -7,6 +7,7 @@ import com.lingfen.website.blog.service.TagService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
+import java.util.ArrayList;
 import java.util.List;
 
 @Service
@@ -22,7 +23,7 @@ public class TagServiceImpl implements TagService {
 
     @Override
     public Tag selectTagByName(String name) {
-        Tag tag=tagMapper.selectTagByName(name);
+        Tag tag = tagMapper.selectTagByName(name);
         return tag;
     }
 
@@ -46,13 +47,13 @@ public class TagServiceImpl implements TagService {
 
     @Override
     public List<Tag> getPreViewTag(int nums) {
-        List<Tag> previewTags=tagMapper.getPreViewTag(nums);
+        List<Tag> previewTags = tagMapper.getPreViewTag(nums);
         return previewTags;
     }
 
     @Override
     public int getMaxNumsBlogTagId() {
-       int result= tagMapper.getMaxNumsBlogTagId();
+        int result = tagMapper.getMaxNumsBlogTagId();
         return result;
     }
 
@@ -61,4 +62,23 @@ public class TagServiceImpl implements TagService {
         int result = tagMapper.updateTag(tag);
         return result;
     }
+
+    @Override
+    public List<Integer> getTagIdsByBlogId(long blogId) {
+        List<Integer> tagIds = tagMapper.getTagIdsByBlogId(blogId);
+        return tagIds;
+    }
+
+    //根据tagId列表查出tag列表
+    @Override
+    public List<Tag> getTagsByTagIds(List<Integer> tagIds) {
+        List<Tag> blogTags = new ArrayList<>();
+        for (Integer tagId : tagIds) {
+            Tag tag = tagMapper.getTagByTagId(tagId);
+            blogTags.add(tag);
+        }
+        return blogTags;
+    }
+
+
 }

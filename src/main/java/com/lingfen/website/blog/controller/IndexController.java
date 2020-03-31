@@ -55,7 +55,7 @@ public class IndexController {
     //点进首页的一篇博客
     @GetMapping("/blog/{id}")
     public String showBlog(@PathVariable Long id,Model model){
-        Blog blog = blogService.getBlogById(id);
+        Blog blog = blogService.getMdBlogById(id);
         User user = userService.getUserById(blog.getUserId());
         model.addAttribute("blog", blog);
         model.addAttribute("user", user);

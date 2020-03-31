@@ -53,6 +53,7 @@ public class BlogController {
     public String addBlogPage(Model model) {
         model.addAttribute("types", typeService.getAllType());
         model.addAttribute("tags", tagService.getAllTag());
+        model.addAttribute("blog", new Blog());
         return "admin/blogs-input";
     }
 
@@ -60,35 +61,49 @@ public class BlogController {
     public String addBlog(Blog blog, RedirectAttributes attributes, HttpSession httpSession) {
 //        blog.setUser((User)httpSession.getAttribute("user"));
         User user = (User) httpSession.getAttribute("user");
-        blog.setTypeId(blog.getType().getId());
+//        blog.setTypeId(blog.getType().getId());
         blog.setUserId(user.getId());
-        blog.setCreateTime(new Date());
-        int result = blogService.savaBlog(blog);
+//        blog.setCreateTime(new Date());
+        blog.setUpdateTime(new Date());
+        int result = 0;
+        if (blog.getId() == null) {
+            blog.setCreateTime(new Date());
+            result = blogService.savaBlog(blog);
+
+        } else {
+            result = blogService.updateBlog(blog);
+        }
         if (result != 0) {
-            attributes.addFlashAttribute("message", "发布成功");
+            attributes.addFlashAttribute("message", "操作成功");
         }
         return "redirect:/admin/blogs";
     }
 
-    @GetMapping("/blogs/{id}/input")
-    public String toEditPage(@PathVariable long id,Model model){
-        Blog blog=blogService.getBlogById(id);
+    //更新编辑博客
+    @GetMapping("/blogs/{blogId}/input")
+    public String toEditPage(@PathVariable long blogId, Model model) {
+        Blog blog = blogService.getBlogById(blogId);
+        blog.init();
         List<Type> types = typeService.getAllType();
         List<Tag> tags = tagService.getAllTag();
+//        List<Integer> tagIds = tagService.getTagIdsByBlogId(blogId);//通过blogId拿到List<tagId>
+//        List<Tag> blogTags=tagService.getTagsByTagIds(tagIds);//通过List<TagId>拿到List<Tag>
         model.addAttribute("blog", blog);
         model.addAttribute("types", types);
         model.addAttribute("tags", tags);
-        return "admin/blogs-update";
+//        model.addAttribute("blogTags", blogTags);
+//        return "admin/blogs-update";
+        return "admin/blogs-input";
     }
 
-    @PostMapping("/blogs/update")
-    public String editPost(Blog blog,RedirectAttributes attributes) {
-        int result = blogService.updateBlog(blog);
-        if(result!=0)
-            attributes.addFlashAttribute("message", "修改成功");
-        else
-            attributes.addFlashAttribute("message", "修改失败");
-        return "redirect:/admin/blogs";
-    }
+//    @PostMapping("/blogs/update")
+////    public String editPost(Blog blog,RedirectAttributes attributes) {
+////        int result = blogService.updateBlog(blog);
+////        if(result!=0)
+////            attributes.addFlashAttribute("message", "修改成功");
+////        else
+////            attributes.addFlashAttribute("message", "修改失败");
+////        return "redirect:/admin/blogs";
+////    }
 
 }

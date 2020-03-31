@@ -5,9 +5,12 @@ import com.lingfen.website.blog.bean.helpbean.ArchivesBlogBean;
 import com.lingfen.website.blog.bean.helpbean.PreviewBlog;
 import com.lingfen.website.blog.bean.Type;
 import com.lingfen.website.blog.bean.helpbean.RecommendPreviewBlog;
+import com.lingfen.website.blog.exception.NotFoundException;
 import com.lingfen.website.blog.mapper.BlogMapper;
 import com.lingfen.website.blog.mapper.TypeMapper;
 import com.lingfen.website.blog.service.BlogService;
+import com.lingfen.website.blog.utils.MarkdownUtils;
+import org.springframework.beans.BeanUtils;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
@@ -56,9 +59,21 @@ public class BlogServiceImpl implements BlogService {
 
     @Override
     public int updateBlog(Blog blog) {
-        blog.setUpdateTime(new Date());
+        Date date = new Date();
+        blog.setUpdateTime(date);
         int result = blogMapper.updateBlog(blog);
         return result;
+    }
+
+    private List<Integer> convertToList(String ids) {
+        List<Integer> list = new ArrayList<>();
+        if (!"".equals(ids) && ids != null) {
+            String[] idarray = ids.split(",");
+            for (int i = 0; i < idarray.length; i++) {
+                list.add(new Integer(idarray[i]));
+            }
+        }
+        return list;
     }
 
     @Override
@@ -102,5 +117,19 @@ public class BlogServiceImpl implements BlogService {
             archivesBlog.put(year, archivesBlogBeansByYear); //将年份和对应的归档博客按k v放进map中
         }
         return archivesBlog;
+    }
+
+    @Override
+    public Blog getMdBlogById(Long id) {
+        Blog blog = getBlogById(id);
+        if (blog == null)
+            throw new NotFoundException("该博客不存在");
+        Blog mdBlog = new Blog();
+        BeanUtils.copyProperties(blog, mdBlog);
+        String content = mdBlog.getContent();
+        mdBlog.setContent(MarkdownUtils.markdownToHtmlExtensions(content));
+        //更新浏览量 +1
+        int i = blogMapper.updateViews(id);
+        return mdBlog;
     }
 }

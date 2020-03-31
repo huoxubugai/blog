@@ -22,10 +22,18 @@
         select id from tag where blog_nums in
         (SELECT max(blog_nums) from tag) limit 1
     </select>
+
+    <select id="getTagIdsByBlogId" resultMap="tagIds">
+        select tag_id from blog_relation_tag where blog_id=#{blogId}
+    </select>
+    <select id="getTagByTagId" resultType="com.lingfen.website.blog.bean.Tag">
+        select * from tag where id=#{tagId}
+    </select>
     <delete id="deleteTagById" >
         delete from tag where id=#{id} limit 1
     </delete>
     <resultMap id="tag" type="com.lingfen.website.blog.bean.Tag">
-
+    </resultMap>
+    <resultMap id="tagIds" type="int">
     </resultMap>
 </mapper>

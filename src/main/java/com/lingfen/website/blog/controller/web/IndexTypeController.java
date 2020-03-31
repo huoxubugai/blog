@@ -24,7 +24,7 @@ public class IndexTypeController {
 
     //点进首页的分类
     @GetMapping("/types/{typeId}")
-    public String getBlogByType(@PathVariable int typeId, Model model, @RequestParam(defaultValue = "1",value = "pageNum") Integer pageNum){
+    public String getBlogByType(@PathVariable("typeId") Integer typeId, Model model, @RequestParam(defaultValue = "1", value = "pageNum") Integer pageNum) {
         //首页导航进去时 typeId=-1,变更为博客数最多的typeId
         if(typeId==-1){
             typeId=typeService.getMaxNumsBlogTypeId();

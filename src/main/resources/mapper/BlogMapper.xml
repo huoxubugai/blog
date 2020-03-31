@@ -6,8 +6,12 @@
     <update id="updateBlog">
       update blog set title=#{blog.title},content=#{blog.content},first_picture=#{blog.firstPicture},flag=#{blog.flag},
       appreciation=#{blog.appreciation},share_statement=#{blog.shareStatement},commentabled=#{blog.commentabled},
-      published=#{blog.published},recommend=#{blog.recommend},update_time=#{blog.updateTime},type_id=#{blog.typeId},description=#{blog.description}
+      published=#{blog.published},recommend=#{blog.recommend},update_time=#{blog.updateTime},type_id=#{blog.typeId},
+      description=#{blog.description},tag_ids=#{blog.tagIds}
       where id=#{blog.id}
+    </update>
+    <update id="updateViews">
+        update blog b set b.views=b.views+1 where id=#{blogId}
     </update>
     <select id="getPreviewBlog" resultMap="previewBlog">
         select b.id,b.title,b.first_picture,b.views,b.update_time,b.type_id,b.user_id,b.description ,

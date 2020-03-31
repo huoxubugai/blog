@@ -113,10 +113,10 @@
             <th colspan="7">
               <div class="ui mini pagination menu" th:if="${pageInfo.pages}>1" >
                 <div th:if="${pageInfo.hasPreviousPage}">
-                  <a th:href="@{/admin/types(pageNum=${pageInfo.hasPreviousPage}?${pageInfo.prePage}:1)}">上一页</a>
+                  <a th:href="@{/admin/blogs(pageNum=${pageInfo.hasPreviousPage}?${pageInfo.prePage}:1)}">上一页</a>
                 </div>
                 <div th:if="${pageInfo.hasNextPage}">
-                  <a th:href="@{/admin/types(pageNum=${pageInfo.hasNextPage}?${pageInfo.nextPage}:${pageInfo.pages})}">下一页</a>
+                  <a th:href="@{/admin/blogs(pageNum=${pageInfo.hasNextPage}?${pageInfo.nextPage}:${pageInfo.pages})}">下一页</a>
                 </div>
                 <!--<a onclick="page(this)" th:attr="data-page=${page.number}-1" class="item" th:unless="${page.first}">上一页</a>-->
                 <!--<a onclick="page(this)" th:attr="data-page=${page.number}+1" class=" item" th:unless="${page.last}">下一页</a>-->
