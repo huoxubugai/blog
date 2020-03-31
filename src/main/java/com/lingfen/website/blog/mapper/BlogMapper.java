@@ -29,4 +29,6 @@ public interface BlogMapper extends Mapper<Blog> {
     List<ArchivesBlogBean> getArchivesBlog(@Param("year") String year);
 
     int updateViews(@Param("blogId") Long id);
+
+    int getTypeIdByBlogId(@Param("blogId") Long id);
 }

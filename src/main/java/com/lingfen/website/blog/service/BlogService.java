@@ -33,4 +33,6 @@ public interface BlogService {
     Map<String, List<ArchivesBlogBean>> getArchivesBlog();
 
     Blog getMdBlogById(Long id);
+
+    int getTypeIdByBlogId(Long id);
 }

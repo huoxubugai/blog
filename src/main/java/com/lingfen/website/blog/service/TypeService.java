@@ -23,4 +23,9 @@ public interface TypeService {
 
     int getMaxNumsBlogTypeId();
 
+    int decreaseBlogNumsByTypeId(int typeId);
+
+    int increaseBlogNumsByTypeId(int typeId);
+
+    int atomicUpdateTwoTypeId(int newTypeId, int oldTypeId);
 }

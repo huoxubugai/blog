@@ -29,6 +29,7 @@ public class BlogController {
     @Autowired
     TagService tagService;
 
+    int oldTypeId;//更新博客时，需要对oldTypeId对应的博客数量减一，再对newTypeId对应的博客数量加一
     @GetMapping("/blogs")
     public String listBlogs(Model model, @RequestParam(defaultValue = "1", value = "pageNum") Integer pageNum) {
         PageHelper.startPage(pageNum, 5);
@@ -42,8 +43,10 @@ public class BlogController {
 
     @GetMapping("/blogs/{id}/delete")
     public String deleteBlogById(@PathVariable Long id, RedirectAttributes attributes) {
+        int typeId = blogService.getTypeIdByBlogId(id);//根据博客id拿到对应的typeId
+        int decreaseResult = typeService.decreaseBlogNumsByTypeId(typeId);//删除博客的同时要将type表中对应的博客数量减一
         int result = blogService.deleteBlogById(id);
-        if (result != 0) {
+        if (result != 0 && decreaseResult != 0) {
             attributes.addFlashAttribute("message", "删除成功");
         }
         return "redirect:/admin/blogs";
@@ -58,7 +61,7 @@ public class BlogController {
     }
 
     @PostMapping("/blogs")
-    public String addBlog(Blog blog, RedirectAttributes attributes, HttpSession httpSession) {
+    public String addOrUpdateBlog(Blog blog, RedirectAttributes attributes, HttpSession httpSession) {
 //        blog.setUser((User)httpSession.getAttribute("user"));
         User user = (User) httpSession.getAttribute("user");
 //        blog.setTypeId(blog.getType().getId());
@@ -68,10 +71,12 @@ public class BlogController {
         int result = 0;
         if (blog.getId() == null) {
             blog.setCreateTime(new Date());
-            result = blogService.savaBlog(blog);
-
+            result = blogService.savaBlog(blog); //拿不到id时则表示是新增博客
+            int increseResult = typeService.increaseBlogNumsByTypeId(blog.getTypeId()); //新增博客的同时对type表中的博客数量加1
         } else {
             result = blogService.updateBlog(blog);
+            int newTypeId = blog.getTypeId();
+            int atomicUpdateResult = typeService.atomicUpdateTwoTypeId(newTypeId, oldTypeId);  //以事务的方式对两个typeId进行原子更新
         }
         if (result != 0) {
             attributes.addFlashAttribute("message", "操作成功");
@@ -81,9 +86,10 @@ public class BlogController {
 
     //更新编辑博客
     @GetMapping("/blogs/{blogId}/input")
-    public String toEditPage(@PathVariable long blogId, Model model) {
+    public String editInput(@PathVariable long blogId, Model model) {
         Blog blog = blogService.getBlogById(blogId);
         blog.init();
+        oldTypeId = blog.getTypeId();//拿到博客更新前的typeId
         List<Type> types = typeService.getAllType();
         List<Tag> tags = tagService.getAllTag();
 //        List<Integer> tagIds = tagService.getTagIdsByBlogId(blogId);//通过blogId拿到List<tagId>

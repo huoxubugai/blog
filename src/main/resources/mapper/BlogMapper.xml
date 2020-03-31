@@ -72,6 +72,9 @@ AND b.id IN (
         and DATE_FORMAT(create_time,"%Y") =#{year}
         order by date desc
     </select>
+    <select id="getTypeIdByBlogId" resultType="java.lang.Integer">
+        select type_id from blog where id=#{blogId} limit 1
+    </select>
 
 
     <resultMap id="previewBlog" type="com.lingfen.website.blog.bean.helpbean.PreviewBlog">

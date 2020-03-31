@@ -65,4 +65,21 @@ public class TypeServiceImpl implements TypeService {
         int typeId=typeMapper.getMaxNumsBlogTypeId();
         return typeId;
     }
+
+    @Override
+    public int decreaseBlogNumsByTypeId(int typeId) {
+        int result = typeMapper.decreaseBlogNumsByTypeId(typeId);
+        return result;
+    }
+
+    @Override
+    public int increaseBlogNumsByTypeId(int typeId) {
+        int result = typeMapper.increaseBlogNumsByTypeId(typeId);
+        return result;
+    }
+
+    public int atomicUpdateTwoTypeId(int newTypeId, int oldTypeId) {
+        int result = typeMapper.increaseBlogNumsByTypeId(newTypeId) + typeMapper.decreaseBlogNumsByTypeId(oldTypeId);
+        return result;
+    }
 }

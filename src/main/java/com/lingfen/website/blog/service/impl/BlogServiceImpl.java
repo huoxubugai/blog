@@ -132,4 +132,10 @@ public class BlogServiceImpl implements BlogService {
         int i = blogMapper.updateViews(id);
         return mdBlog;
     }
+
+    @Override
+    public int getTypeIdByBlogId(Long id) {
+        int typeId = blogMapper.getTypeIdByBlogId(id);
+        return typeId;
+    }
 }
