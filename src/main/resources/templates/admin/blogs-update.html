@@ -150,7 +150,7 @@
                 <div class="field">
                     <div class="ui checkbox">
                         <input type="checkbox" id="recommend" class="hidden" checked name="recommend"
-                               th:checked="${blog.isRecommend()}">
+                               th:checked="${blog.getRecommend()}">
                         <label for="recommend">推荐</label>
                     </div>
                 </div>
@@ -158,7 +158,7 @@
                 <div class="field">
                     <div class="ui checkbox">
                         <input type="checkbox" id="shareStatement" class="hidden" name="shareStatement"
-                               th:checked="${blog.isShareStatement()}">
+                               th:checked="${blog.getShareStatement()}">
                         <label for="shareStatement">转载声明</label>
                     </div>
                 </div>
@@ -166,7 +166,7 @@
                 <div class="field">
                     <div class="ui checkbox">
                         <input type="checkbox" id="appreciation" class="hidden" name="appreciation"
-                               th:checked="${blog.isAppreciation()}">
+                               th:checked="${blog.getAppreciation()}">
                         <label for="appreciation">打赏</label>
                     </div>
                 </div>
@@ -174,7 +174,7 @@
                 <div class="field">
                     <div class="ui checkbox">
                         <input type="checkbox" id="commentabled" class="hidden" name="commentabled"
-                               th:checked="${blog.isCommentabled()}">
+                               th:checked="${blog.getCommentabled()}">
                         <label for="commentabled">评论</label>
                     </div>
                 </div>

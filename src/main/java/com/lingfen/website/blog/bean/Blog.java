@@ -1,9 +1,8 @@
 package com.lingfen.website.blog.bean;
 
-import javax.persistence.GeneratedValue;
-import javax.persistence.GenerationType;
-import javax.persistence.Id;
-import javax.persistence.Transient;
+import com.sun.org.apache.xpath.internal.operations.Bool;
+
+import javax.persistence.*;
 import java.util.ArrayList;
 import java.util.Date;
 import java.util.List;
@@ -18,11 +17,11 @@ public class Blog {
     private String firstPicture; //博客首图
     private String flag; //原创or转载
     private Integer views;//查看次数
-    private boolean appreciation; //赞赏开启
-    private boolean shareStatement; //转载声明
-    private boolean commentabled;//是否评论
-    private boolean published;//是否发表
-    private boolean recommend; //是否推荐
+    private Boolean appreciation; //赞赏开启
+    private Boolean shareStatement; //转载声明
+    private Boolean commentabled;//是否评论
+    private Boolean published;//是否发表
+    private Boolean recommend; //是否推荐
     private Date createTime; //创建时间
     private Date updateTime; //更新时间
     private Integer typeId;
@@ -146,40 +145,65 @@ public class Blog {
         this.views = views;
     }
 
-    public boolean isAppreciation() {
-        return appreciation;
-    }
 
     public void setAppreciation(boolean appreciation) {
         this.appreciation = appreciation;
     }
 
-    public boolean isShareStatement() {
-        return shareStatement;
-    }
 
     public void setShareStatement(boolean shareStatement) {
         this.shareStatement = shareStatement;
     }
 
-    public boolean isCommentabled() {
-        return commentabled;
-    }
 
     public void setCommentabled(boolean commentabled) {
         this.commentabled = commentabled;
     }
 
-    public boolean isPublished() {
-        return published;
-    }
 
     public void setPublished(boolean published) {
         this.published = published;
     }
 
-    public boolean isRecommend() {
+
+    public Boolean getShareStatement() {
+        return shareStatement;
+    }
+
+    public void setShareStatement(Boolean shareStatement) {
+        this.shareStatement = shareStatement;
+    }
+
+    public Boolean getCommentabled() {
+        return commentabled;
+    }
+
+    public void setCommentabled(Boolean commentabled) {
+        this.commentabled = commentabled;
+    }
+
+    public Boolean getPublished() {
+        return published;
+    }
+
+    public void setPublished(Boolean published) {
+        this.published = published;
+    }
+
+    public Boolean getRecommend() {
         return recommend;
+    }
+
+    public void setRecommend(Boolean recommend) {
+        this.recommend = recommend;
+    }
+
+    public Boolean getAppreciation() {
+        return appreciation;
+    }
+
+    public void setAppreciation(Boolean appreciation) {
+        this.appreciation = appreciation;
     }
 
     public void setRecommend(boolean recommend) {

@@ -15,11 +15,11 @@ public class BlogSearchBean {
     private String firstPicture; //博客首图
     private String flag; //原创or转载
     private Integer views;//查看次数
-    private boolean appreciation; //赞赏开启
-    private boolean shareStatement; //转载声明
-    private boolean commentabled;//是否评论
-    private boolean published;//是否发表
-    private boolean recommend; //是否推荐
+    private Boolean appreciation; //赞赏开启
+    private Boolean shareStatement; //转载声明
+    private Boolean commentabled;//是否评论
+    private Boolean published;//是否发表
+    private Boolean recommend; //是否推荐
     private Date createTime; //创建时间
     private Date updateTime; //更新时间
     private Integer typeId;
@@ -34,28 +34,28 @@ public class BlogSearchBean {
     @Transient
     private String userNickname;
 
-    public String getTypeName() {
-        return typeName;
+    public Long getId() {
+        return id;
     }
 
-    public void setTypeName(String typeName) {
-        this.typeName = typeName;
+    public void setId(Long id) {
+        this.id = id;
     }
 
-    public String getUserAvatar() {
-        return userAvatar;
+    public String getTitle() {
+        return title;
     }
 
-    public void setUserAvatar(String userAvatar) {
-        this.userAvatar = userAvatar;
+    public void setTitle(String title) {
+        this.title = title;
     }
 
-    public String getUserNickname() {
-        return userNickname;
+    public String getContent() {
+        return content;
     }
 
-    public void setUserNickname(String userNickname) {
-        this.userNickname = userNickname;
+    public void setContent(String content) {
+        this.content = content;
     }
 
     public String getFirstPicture() {
@@ -82,43 +82,43 @@ public class BlogSearchBean {
         this.views = views;
     }
 
-    public boolean isAppreciation() {
+    public Boolean getAppreciation() {
         return appreciation;
     }
 
-    public void setAppreciation(boolean appreciation) {
+    public void setAppreciation(Boolean appreciation) {
         this.appreciation = appreciation;
     }
 
-    public boolean isShareStatement() {
+    public Boolean getShareStatement() {
         return shareStatement;
     }
 
-    public void setShareStatement(boolean shareStatement) {
+    public void setShareStatement(Boolean shareStatement) {
         this.shareStatement = shareStatement;
     }
 
-    public boolean isCommentabled() {
+    public Boolean getCommentabled() {
         return commentabled;
     }
 
-    public void setCommentabled(boolean commentabled) {
+    public void setCommentabled(Boolean commentabled) {
         this.commentabled = commentabled;
     }
 
-    public boolean isPublished() {
+    public Boolean getPublished() {
         return published;
     }
 
-    public void setPublished(boolean published) {
+    public void setPublished(Boolean published) {
         this.published = published;
     }
 
-    public boolean isRecommend() {
+    public Boolean getRecommend() {
         return recommend;
     }
 
-    public void setRecommend(boolean recommend) {
+    public void setRecommend(Boolean recommend) {
         this.recommend = recommend;
     }
 
@@ -170,28 +170,28 @@ public class BlogSearchBean {
         this.tagIds = tagIds;
     }
 
-    public Long getId() {
-        return id;
+    public String getTypeName() {
+        return typeName;
     }
 
-    public void setId(Long id) {
-        this.id = id;
+    public void setTypeName(String typeName) {
+        this.typeName = typeName;
     }
 
-    public String getTitle() {
-        return title;
+    public String getUserAvatar() {
+        return userAvatar;
     }
 
-    public void setTitle(String title) {
-        this.title = title;
+    public void setUserAvatar(String userAvatar) {
+        this.userAvatar = userAvatar;
     }
 
-    public String getContent() {
-        return content;
+    public String getUserNickname() {
+        return userNickname;
     }
 
-    public void setContent(String content) {
-        this.content = content;
+    public void setUserNickname(String userNickname) {
+        this.userNickname = userNickname;
     }
 
     @Override
