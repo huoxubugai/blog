@@ -88,4 +88,10 @@ public class TypeServiceImpl implements TypeService {
         String name = typeMapper.getTypeNameByTypeId(typeId);
         return name;
     }
+
+    @Override
+    public int updateBlogNumsToLatest() {
+        int result = typeMapper.updateBlogNumsToLatest();
+        return result;
+    }
 }

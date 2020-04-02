@@ -25,4 +25,6 @@ public interface TypeMapper extends Mapper<Type> {
     int increaseBlogNumsByTypeId(@Param("typeId") int typeId);
 
     String getTypeNameByTypeId(@Param("typeId") Integer typeId);
+
+    int updateBlogNumsToLatest();
 }

@@ -12,6 +12,19 @@
     <update id="increaseBlogNumsByTypeId">
         update type t set t.blogs=t.blogs+1 where id=#{typeId} limit 1
     </update>
+    <update id="updateBlogNumsToLatest">
+        UPDATE type t
+        INNER JOIN (
+	      SELECT
+		    type_id,
+		    Count(type_id) AS blogs
+	      FROM
+		    blog
+	    GROUP BY
+		type_id
+      ) b ON t.id = b.type_id
+        SET t.blogs = b.blogs
+    </update>
 
     <select id="selectTypeByName" resultType="com.lingfen.website.blog.bean.Type">
         select * from blog.type where name=#{name} limit 1

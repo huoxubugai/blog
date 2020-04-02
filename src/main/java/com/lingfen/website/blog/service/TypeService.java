@@ -30,4 +30,6 @@ public interface TypeService {
     int atomicUpdateTwoTypeId(int newTypeId, int oldTypeId);
 
     String getTypeNameByTypeId(Integer typeId);
+
+    int updateBlogNumsToLatest();
 }
