@@ -28,4 +28,6 @@ public interface TypeService {
     int increaseBlogNumsByTypeId(int typeId);
 
     int atomicUpdateTwoTypeId(int newTypeId, int oldTypeId);
+
+    String getTypeNameByTypeId(Integer typeId);
 }

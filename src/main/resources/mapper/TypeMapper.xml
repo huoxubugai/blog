@@ -28,6 +28,9 @@
     <select id="getMaxNumsBlogTypeId" resultType="java.lang.Integer">
         select id from type where blogs in(select max(blogs) from type) limit 1
     </select>
+    <select id="getTypeNameByTypeId" resultType="java.lang.String">
+        select name from type where id=#{typeId}
+    </select>
     <delete id="deleteTypeById">
         delete from type where id=#{id} limit 1
     </delete>

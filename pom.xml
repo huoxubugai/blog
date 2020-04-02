@@ -77,6 +77,11 @@
             <artifactId>commonmark-ext-gfm-tables</artifactId>
             <version>0.10.0</version>
         </dependency>
+        <!-- Elasticsearch支持 -->
+        <dependency>
+            <groupId>org.springframework.boot</groupId>
+            <artifactId>spring-boot-starter-data-elasticsearch</artifactId>
+        </dependency>
     </dependencies>
 
     <build>

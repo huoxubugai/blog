@@ -1,17 +1,14 @@
-package com.lingfen.website.blog.bean;
+package com.lingfen.website.blog.search;
 
-import javax.persistence.GeneratedValue;
-import javax.persistence.GenerationType;
+import org.springframework.data.elasticsearch.annotations.Document;
+
 import javax.persistence.Id;
 import javax.persistence.Transient;
-import java.util.ArrayList;
 import java.util.Date;
-import java.util.List;
 
-public class Blog {
-
+@Document(indexName = "blogs", type = "blog")
+public class BlogSearchBean {
     @Id
-    @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;  //主键
     private String title; //博客标题
     private String content; //博客内容
@@ -30,96 +27,35 @@ public class Blog {
     private String description;
     private String tagIds;//字符串形式存储多个tagId 1,2,3，...
 
-
-
     @Transient
-    private Type type;
+    private String typeName;
     @Transient
-    private User user;
+    private String userAvatar;
     @Transient
-    private List<Tag> tags = new ArrayList<>();
-    ;
+    private String userNickname;
 
-    public List<Tag> getTags() {
-        return tags;
+    public String getTypeName() {
+        return typeName;
     }
 
-    public void setTags(List<Tag> tags) {
-        this.tags = tags;
+    public void setTypeName(String typeName) {
+        this.typeName = typeName;
     }
 
-    public String getTagIds() {
-        return tagIds;
+    public String getUserAvatar() {
+        return userAvatar;
     }
 
-    public void setTagIds(String tagIds) {
-        this.tagIds = tagIds;
-    }
-    public String getDescription() {
-        return description;
+    public void setUserAvatar(String userAvatar) {
+        this.userAvatar = userAvatar;
     }
 
-    public void setDescription(String description) {
-        this.description = description;
+    public String getUserNickname() {
+        return userNickname;
     }
 
-    public User getUser() {
-        return user;
-    }
-
-    public void setUser(User user) {
-        this.user = user;
-    }
-
-    public Type getType() {
-        return type;
-    }
-
-    public void setType(Type type) {
-        this.type = type;
-    }
-
-    public Integer getTypeId() {
-        return typeId;
-    }
-
-    public void setTypeId(Integer typeId) {
-        this.typeId = typeId;
-    }
-
-    public Integer getUserId() {
-        return userId;
-    }
-
-    public void setUserId(Integer userId) {
-        this.userId = userId;
-    }
-
-    public Blog() {
-    }
-
-    public Long getId() {
-        return id;
-    }
-
-    public void setId(Long id) {
-        this.id = id;
-    }
-
-    public String getTitle() {
-        return title;
-    }
-
-    public void setTitle(String title) {
-        this.title = title;
-    }
-
-    public String getContent() {
-        return content;
-    }
-
-    public void setContent(String content) {
-        this.content = content;
+    public void setUserNickname(String userNickname) {
+        this.userNickname = userNickname;
     }
 
     public String getFirstPicture() {
@@ -202,32 +138,65 @@ public class Blog {
         this.updateTime = updateTime;
     }
 
-    public void init() {
-        this.tagIds = tagsToIds(this.getTags());
+    public Integer getTypeId() {
+        return typeId;
     }
 
-    //1,2,3
-    private String tagsToIds(List<Tag> tags) {
-        if (!tags.isEmpty()) {
-            StringBuffer ids = new StringBuffer();
-            boolean flag = false;
-            for (Tag tag : tags) {
-                if (flag) {
-                    ids.append(",");
-                } else {
-                    flag = true;
-                }
-                ids.append(tag.getId());
-            }
-            return ids.toString();
-        } else {
-            return tagIds;
-        }
+    public void setTypeId(Integer typeId) {
+        this.typeId = typeId;
+    }
+
+    public Integer getUserId() {
+        return userId;
+    }
+
+    public void setUserId(Integer userId) {
+        this.userId = userId;
+    }
+
+    public String getDescription() {
+        return description;
+    }
+
+    public void setDescription(String description) {
+        this.description = description;
+    }
+
+    public String getTagIds() {
+        return tagIds;
+    }
+
+    public void setTagIds(String tagIds) {
+        this.tagIds = tagIds;
+    }
+
+    public Long getId() {
+        return id;
+    }
+
+    public void setId(Long id) {
+        this.id = id;
+    }
+
+    public String getTitle() {
+        return title;
+    }
+
+    public void setTitle(String title) {
+        this.title = title;
+    }
+
+    public String getContent() {
+        return content;
+    }
+
+    public void setContent(String content) {
+        this.content = content;
     }
 
     @Override
     public String toString() {
-        return "Blog{" +
+        return "BlogSearchBean{" +
                 "id=" + id +
                 ", title='" + title + '\'' +
                 ", content='" + content + '\'' +
@@ -241,6 +210,10 @@ public class Blog {
                 ", recommend=" + recommend +
                 ", createTime=" + createTime +
                 ", updateTime=" + updateTime +
+                ", typeId=" + typeId +
+                ", userId=" + userId +
+                ", description='" + description + '\'' +
+                ", tagIds='" + tagIds + '\'' +
                 '}';
     }
 }

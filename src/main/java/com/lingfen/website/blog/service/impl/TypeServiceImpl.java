@@ -82,4 +82,10 @@ public class TypeServiceImpl implements TypeService {
         int result = typeMapper.increaseBlogNumsByTypeId(newTypeId) + typeMapper.decreaseBlogNumsByTypeId(oldTypeId);
         return result;
     }
+
+    @Override
+    public String getTypeNameByTypeId(Integer typeId) {
+        String name = typeMapper.getTypeNameByTypeId(typeId);
+        return name;
+    }
 }
