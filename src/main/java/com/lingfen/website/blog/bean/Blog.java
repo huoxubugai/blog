@@ -29,6 +29,8 @@ public class Blog {
     private String description;
     private String tagIds;//字符串形式存储多个tagId 1,2,3，...
 
+    @Transient
+    List<Comment> comments = new ArrayList<>();
 
 
     @Transient
@@ -37,7 +39,6 @@ public class Blog {
     private User user;
     @Transient
     private List<Tag> tags = new ArrayList<>();
-    ;
 
     public List<Tag> getTags() {
         return tags;
@@ -54,6 +55,7 @@ public class Blog {
     public void setTagIds(String tagIds) {
         this.tagIds = tagIds;
     }
+
     public String getDescription() {
         return description;
     }
@@ -228,6 +230,14 @@ public class Blog {
 
     public void init() {
         this.tagIds = tagsToIds(this.getTags());
+    }
+
+    public List<Comment> getComments() {
+        return comments;
+    }
+
+    public void setComments(List<Comment> comments) {
+        this.comments = comments;
     }
 
     //1,2,3

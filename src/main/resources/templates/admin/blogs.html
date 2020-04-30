@@ -21,7 +21,7 @@
           <div class="ui dropdown  item">
             <div class="text">
               <img class="ui avatar image" src="https://unsplash.it/100/100?image=1005">
-              李仁密
+              零分
             </div>
             <i class="dropdown icon"></i>
             <div class="menu">
@@ -99,8 +99,8 @@
             <td th:text="${blog.id}">1</td>
             <td th:text="${blog.title}">刻意练习清单</td>
             <td th:text="${blog.type.name}">认知升级</td>
-            <td th:text="${blog.isRecommend()} ? '是':'否'">是</td>
-            <td th:text="${blog.isPublished()} ? '发布':'草稿'">草稿</td>
+            <td th:text="${blog.getRecommend()} ? '是':'否'">是</td>
+            <td th:text="${blog.getPublished()} ? '发布':'草稿'">草稿</td>
             <td th:text="${blog.createTime}">2019-10-02 09:45</td>
             <td>
               <a href="#" th:href="@{/admin/blogs/{id}/input(id=${blog.id})}" class="ui mini teal basic button">编辑</a>
