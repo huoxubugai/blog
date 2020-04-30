@@ -50,7 +50,7 @@ public class TagController {
 
     //到tag更新页面
     @GetMapping("/tags/{id}/input")
-    public String toTagUpdatePage(@PathVariable int id, Model model) {
+    public String toTagUpdatePage(@PathVariable Integer id, Model model) {
         model.addAttribute("tag", tagService.selectTagById(id));
         return "admin/tags-update";
     }
@@ -67,7 +67,7 @@ public class TagController {
     }
 
     @GetMapping("/tags/{id}/delete")
-    public String delete(@PathVariable int id, RedirectAttributes attributes){
+    public String delete(@PathVariable Integer id, RedirectAttributes attributes) {
         int i = tagService.deleteTag(id);
         if(i!=0){
             attributes.addFlashAttribute("message", "删除成功");

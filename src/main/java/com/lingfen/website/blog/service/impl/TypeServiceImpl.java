@@ -20,7 +20,7 @@ public class TypeServiceImpl implements TypeService {
     }
 
     @Override
-    public Type getType(int id) {
+    public Type getType(Integer id) {
         return null;
     }
 
@@ -37,7 +37,7 @@ public class TypeServiceImpl implements TypeService {
     }
 
     @Override
-    public int deleteType(int id) {
+    public int deleteType(Integer id) {
         int result = typeMapper.deleteTypeById(id);
         return result;
     }
@@ -49,13 +49,13 @@ public class TypeServiceImpl implements TypeService {
     }
 
     @Override
-    public Type selectTypeById(int id) {
+    public Type selectTypeById(Integer id) {
         Type result = typeMapper.selectTypeById(id);
         return result;
     }
 
     @Override
-    public List<Type> getPreViewType(int typeNums) {
+    public List<Type> getPreViewType(Integer typeNums) {
         List<Type> previewTypes=typeMapper.getPreViewType(typeNums);
         return previewTypes;
     }
@@ -67,18 +67,18 @@ public class TypeServiceImpl implements TypeService {
     }
 
     @Override
-    public int decreaseBlogNumsByTypeId(int typeId) {
+    public int decreaseBlogNumsByTypeId(Integer typeId) {
         int result = typeMapper.decreaseBlogNumsByTypeId(typeId);
         return result;
     }
 
     @Override
-    public int increaseBlogNumsByTypeId(int typeId) {
+    public int increaseBlogNumsByTypeId(Integer typeId) {
         int result = typeMapper.increaseBlogNumsByTypeId(typeId);
         return result;
     }
 
-    public int atomicUpdateTwoTypeId(int newTypeId, int oldTypeId) {
+    public int atomicUpdateTwoTypeId(Integer newTypeId, Integer oldTypeId) {
         int result = typeMapper.increaseBlogNumsByTypeId(newTypeId) + typeMapper.decreaseBlogNumsByTypeId(oldTypeId);
         return result;
     }

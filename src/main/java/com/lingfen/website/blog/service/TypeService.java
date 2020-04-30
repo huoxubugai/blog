@@ -7,27 +7,27 @@ import java.util.List;
 public interface TypeService {
     int saveType(Type type);
 
-    Type getType(int id);
+    Type getType(Integer id);
 
     List<Type> getAllType();
 
     int updateType(Type type);
 
-    int deleteType(int id);
+    int deleteType(Integer id);
 
     Type selectTypeByName(String name);
 
-    Type selectTypeById(int id);
+    Type selectTypeById(Integer id);
 
-    List<Type> getPreViewType(int typeNums);
+    List<Type> getPreViewType(Integer typeNums);
 
     int getMaxNumsBlogTypeId();
 
-    int decreaseBlogNumsByTypeId(int typeId);
+    int decreaseBlogNumsByTypeId(Integer typeId);
 
-    int increaseBlogNumsByTypeId(int typeId);
+    int increaseBlogNumsByTypeId(Integer typeId);
 
-    int atomicUpdateTwoTypeId(int newTypeId, int oldTypeId);
+    int atomicUpdateTwoTypeId(Integer newTypeId, Integer oldTypeId);
 
     String getTypeNameByTypeId(Integer typeId);
 

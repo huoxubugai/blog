@@ -16,17 +16,17 @@ public interface BlogService {
 
     int savaBlog(Blog blog);
 
-    Blog getBlogById(long id);
+    Blog getBlogById(Long id);
 
     int updateBlog(Blog blog);
 
     List<PreviewBlog> getPreviewBlog();
 
-    List<RecommendPreviewBlog> getRecommendPreviewBlog(int recommendBlogNums);
+    List<RecommendPreviewBlog> getRecommendPreviewBlog(Integer recommendBlogNums);
 
-    List<PreviewBlog> getPreviewBlogByType(int typeId);
+    List<PreviewBlog> getPreviewBlogByType(Integer typeId);
 
-    List<PreviewBlog> getPreviewBlogByTag(int tagId);
+    List<PreviewBlog> getPreviewBlogByTag(Integer tagId);
 
     int getTotalPublishedBlogNums();
 

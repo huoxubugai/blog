@@ -11,18 +11,18 @@ public interface TagMapper extends Mapper<Tag> {
 
     Tag selectTagByName(@Param("name") String name);
 
-    Tag selectTagById(@Param("id") int id);
+    Tag selectTagById(@Param("id") Integer id);
 
-    int deleteTagById(@Param("id") int id);
+    Integer deleteTagById(@Param("id") Integer id);
 
-    List<Tag> getPreViewTag(@Param("nums") int nums);
+    List<Tag> getPreViewTag(@Param("nums") Integer nums);
 
-    int getMaxNumsBlogTagId();
+    Integer getMaxNumsBlogTagId();
 
-    int updateTag(@Param("tag") Tag tag);
+    Integer updateTag(@Param("tag") Tag tag);
 
 
-    List<Integer> getTagIdsByBlogId(@Param("blogId") long blogId);
+    List<Integer> getTagIdsByBlogId(@Param("blogId") Long blogId);
 
     Tag getTagByTagId(@Param("tagId") Integer tagId);
 }

@@ -16,14 +16,11 @@ public class Comment {
     private String content;
     private String nickname;
     private String contact;//联系方式
-    private long blogId; //对应的博客id
+    private Long blogId; //对应的博客id
     private String blogTitle; //对应的博客标题
     private String avatar;
     private Date createTime;
-
     private Boolean blogHolder;//是否是博主
-
-
     private Integer parentCommentId;
 //    private String parentNickname;
 
@@ -67,7 +64,7 @@ public class Comment {
         this.contact = contact;
     }
 
-    public long getBlogId() {
+    public Long getBlogId() {
         return blogId;
     }
 
@@ -137,6 +134,10 @@ public class Comment {
 
     public void setBlogHolder(Boolean blogHolder) {
         this.blogHolder = blogHolder;
+    }
+
+    public void setBlogId(Long blogId) {
+        this.blogId = blogId;
     }
 
 }

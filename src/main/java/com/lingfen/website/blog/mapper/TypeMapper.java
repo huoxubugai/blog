@@ -10,21 +10,21 @@ public interface TypeMapper extends Mapper<Type> {
     Type selectTypeByName(@Param("name") String name);
     List<Type> getAllType();
 
-    int deleteTypeById(@Param("id") int id);
+    Integer deleteTypeById(@Param("id") Integer id);
 
-    Type selectTypeById(@Param("id") int id);
+    Type selectTypeById(@Param("id") Integer id);
 
-    List<Type> getPreViewType(@Param("typeNums") int typeNums);
+    List<Type> getPreViewType(@Param("typeNums") Integer typeNums);
 
-    int getMaxNumsBlogTypeId();
+    Integer getMaxNumsBlogTypeId();
 
-    int updateType(@Param("type") Type type);
+    Integer updateType(@Param("type") Type type);
 
-    int decreaseBlogNumsByTypeId(@Param("typeId") int typeId);
+    Integer decreaseBlogNumsByTypeId(@Param("typeId") Integer typeId);
 
-    int increaseBlogNumsByTypeId(@Param("typeId") int typeId);
+    Integer increaseBlogNumsByTypeId(@Param("typeId") Integer typeId);
 
     String getTypeNameByTypeId(@Param("typeId") Integer typeId);
 
-    int updateBlogNumsToLatest();
+    Integer updateBlogNumsToLatest();
 }

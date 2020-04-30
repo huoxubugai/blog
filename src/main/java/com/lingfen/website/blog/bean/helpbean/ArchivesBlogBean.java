@@ -1,17 +1,17 @@
 package com.lingfen.website.blog.bean.helpbean;
 
 public class ArchivesBlogBean {
-    private int id;
+    private Integer id;
     private String title;
     private String flag;
     private String year;
     private String date;
 
-    public int getId() {
+    public Integer getId() {
         return id;
     }
 
-    public void setId(int id) {
+    public void setId(Integer id) {
         this.id = id;
     }
 

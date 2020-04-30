@@ -11,18 +11,18 @@ public interface TagService {
 
     int saveTag(Tag tag);
 
-    Tag selectTagById(int id);
+    Tag selectTagById(Integer id);
 
-    int deleteTag(int id);
+    int deleteTag(Integer id);
 
-    List<Tag> getPreViewTag(int nums);
+    List<Tag> getPreViewTag(Integer nums);
 
     int getMaxNumsBlogTagId();
 
     int updateTag(Tag tag);
 
 
-    List<Integer> getTagIdsByBlogId(long blogId);
+    List<Integer> getTagIdsByBlogId(Long blogId);
 
     List<Tag> getTagsByTagIds(List<Integer> tagIds);
 }

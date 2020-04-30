@@ -86,7 +86,7 @@ public class BlogController {
 
     //更新编辑博客
     @GetMapping("/blogs/{blogId}/input")
-    public String editInput(@PathVariable long blogId, Model model) {
+    public String editInput(@PathVariable Long blogId, Model model) {
         Blog blog = blogService.getBlogById(blogId);
         blog.init();
         oldTypeId = blog.getTypeId();//拿到博客更新前的typeId

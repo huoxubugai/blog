@@ -8,14 +8,38 @@ public class PreviewBlog {
     private Long id;
     private String title;
     private String firstPicture;
-    private int views;
+    private Integer views;
     private Date updateTime;
-    private int typeId;
-    private int userId;
+    private Integer typeId;
+    private Integer userId;
     private String typeName;
     private String userAvatar;
     private String nickname;
     private String description;
+
+    public Integer getViews() {
+        return views;
+    }
+
+    public void setViews(Integer views) {
+        this.views = views;
+    }
+
+    public Integer getTypeId() {
+        return typeId;
+    }
+
+    public void setTypeId(Integer typeId) {
+        this.typeId = typeId;
+    }
+
+    public Integer getUserId() {
+        return userId;
+    }
+
+    public void setUserId(Integer userId) {
+        this.userId = userId;
+    }
 
     public String getNickname() {
         return nickname;
@@ -49,13 +73,6 @@ public class PreviewBlog {
         this.firstPicture = firstPicture;
     }
 
-    public int getViews() {
-        return views;
-    }
-
-    public void setViews(int views) {
-        this.views = views;
-    }
 
     public Date getUpdateTime() {
         return updateTime;
@@ -65,21 +82,9 @@ public class PreviewBlog {
         this.updateTime = updateTime;
     }
 
-    public int getTypeId() {
-        return typeId;
-    }
 
-    public void setTypeId(int typeId) {
-        this.typeId = typeId;
-    }
 
-    public int getUserId() {
-        return userId;
-    }
 
-    public void setUserId(int userId) {
-        this.userId = userId;
-    }
 
     public String getTypeName() {
         return typeName;

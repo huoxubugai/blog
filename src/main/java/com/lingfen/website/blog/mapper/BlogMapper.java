@@ -11,24 +11,24 @@ import java.util.List;
 import java.util.Map;
 
 public interface BlogMapper extends Mapper<Blog> {
-    int updateBlog(@Param("blog") Blog blog);
+    Integer updateBlog(@Param("blog") Blog blog);
 
     List<PreviewBlog> getPreviewBlog();
 
-    List<RecommendPreviewBlog> getRecommendPreviewBlog(@Param("recommendBlogNums") int recommendBlogNums);
+    List<RecommendPreviewBlog> getRecommendPreviewBlog(@Param("recommendBlogNums") Integer recommendBlogNums);
 
-    List<PreviewBlog> getPreviewBlogByType(@Param("typeId") int typeId);
+    List<PreviewBlog> getPreviewBlogByType(@Param("typeId") Integer typeId);
 
-    List<PreviewBlog> getPreviewBlogByTag(@Param("tagId") int tagId);
+    List<PreviewBlog> getPreviewBlogByTag(@Param("tagId") Integer tagId);
 
-    int getTotalPublishedBlogNums();
+    Integer getTotalPublishedBlogNums();
 
 
     List<String> getBlogYears();
 
     List<ArchivesBlogBean> getArchivesBlog(@Param("year") String year);
 
-    int updateViews(@Param("blogId") Long id);
+    Integer updateViews(@Param("blogId") Long id);
 
-    int getTypeIdByBlogId(@Param("blogId") Long id);
+    Integer getTypeIdByBlogId(@Param("blogId") Long id);
 }

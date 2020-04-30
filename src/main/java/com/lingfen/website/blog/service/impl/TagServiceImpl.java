@@ -34,19 +34,19 @@ public class TagServiceImpl implements TagService {
     }
 
     @Override
-    public Tag selectTagById(int id) {
+    public Tag selectTagById(Integer id) {
         Tag result = tagMapper.selectTagById(id);
         return result;
     }
 
     @Override
-    public int deleteTag(int id) {
+    public int deleteTag(Integer id) {
         int result = tagMapper.deleteTagById(id);
         return result;
     }
 
     @Override
-    public List<Tag> getPreViewTag(int nums) {
+    public List<Tag> getPreViewTag(Integer nums) {
         List<Tag> previewTags = tagMapper.getPreViewTag(nums);
         return previewTags;
     }
@@ -64,7 +64,7 @@ public class TagServiceImpl implements TagService {
     }
 
     @Override
-    public List<Integer> getTagIdsByBlogId(long blogId) {
+    public List<Integer> getTagIdsByBlogId(Long blogId) {
         List<Integer> tagIds = tagMapper.getTagIdsByBlogId(blogId);
         return tagIds;
     }
