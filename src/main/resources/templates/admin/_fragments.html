@@ -52,19 +52,24 @@
           </div>
         </div>
       </div>
-      <div class="three wide column">
+        <div class="three wide column">
         <h4 class="ui inverted header m-text-thin m-text-spaced " >最新博客</h4>
-        <div class="ui inverted link list">
-          <a href="#" class="item m-text-thin">用户故事（User Story）</a>
-          <a href="#" class="item m-text-thin">用户故事（User Story）</a>
-          <a href="#" class="item m-text-thin">用户故事（User Story）</a>
+            <div id="newblog-container">
+                <div class="ui inverted link list" th:fragment="newblogList">
+                    <a href="#" th:href="@{/blog/{id}(id=${blog.id})}" target="_blank" class="item m-text-thin"
+                       th:each="blog : ${newblogs}" th:text="${blog.title}">用户故事（User Story）</a>
+                    <!--/*-->
+                    <a href="#" class="item m-text-thin">用户故事（User Story）</a>
+                    <a href="#" class="item m-text-thin">用户故事（User Story）</a>
+                    <!--*/-->
+                </div>
         </div>
       </div>
       <div class="three wide column">
         <h4 class="ui inverted header m-text-thin m-text-spaced ">联系我</h4>
         <div class="ui inverted link list">
-          <a href="#" class="item m-text-thin">Email：lirenmi@163.com</a>
-          <a href="#" class="item m-text-thin">QQ：865729312</a>
+            <a href="#" class="item m-text-thin">Wechat：lingfen5666</a>
+            <a href="#" class="item m-text-thin">QQ：1032774690</a>
         </div>
       </div>
       <div class="seven wide column">
@@ -73,7 +78,8 @@
       </div>
     </div>
     <div class="ui inverted section divider"></div>
-    <p class="m-text-thin m-text-spaced m-opacity-tiny">Copyright © 2016 - 2017 Lirenmi Designed by Lirenmi</p>
+      <p class="m-text-thin m-text-spaced m-opacity-tiny">Copyright © 2019 - <span
+              th:text="${#dates.year(#dates.createNow())}">2020</span> Designed by Lingfen</p>
   </div>
 
 </footer>
