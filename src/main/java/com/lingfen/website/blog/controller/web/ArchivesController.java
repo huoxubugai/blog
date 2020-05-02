@@ -20,6 +20,6 @@ public class ArchivesController {
         Map<String, List<ArchivesBlogBean>> archivesBlog = blogService.getArchivesBlog();
         model.addAttribute("archives", archivesBlog);
         model.addAttribute("total", totalPublishedBlogNums);
-        return "/archives";
+        return "archives";
     }
 }

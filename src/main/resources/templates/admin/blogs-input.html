@@ -250,11 +250,21 @@
             width: "100%",
             height: 640,
             syncScrolling: "single",
-            path: "/lib/editormd/lib/"
+            path: "/lib/editormd/lib/",
+            codeFold: true,
+            saveHTMLToTextarea: true,
+            searchReplace: true,
+            htmlDecode: "style,script,iframe|on*",
+            emoji: true,
+            taskList: true,
+            tocm: true, // Using [TOCM]
+            tex: true, // 开启科学公式TeX语言支持，默认关闭
+            flowChart: true, // 开启流程图支持，默认关闭
+            sequenceDiagram: true, // 开启时序/序列图支持，默认关闭,
             //图片上传
-            // imageUpload : true,
-            // imageFormats : ["jpg", "jpeg", "gif", "png", "bmp", "webp"],
-            // imageUploadURL : "/file/upload"
+            imageUpload: true,
+            imageFormats: ["jpg", "jpeg", "gif", "png", "bmp", "webp"],
+            imageUploadURL: "/file/upload"
 
         });
     });

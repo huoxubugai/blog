@@ -34,6 +34,6 @@ public class IndexTagController {
         model.addAttribute("tags", tags);
         model.addAttribute("page", pageInfo);
         model.addAttribute("activeTagId", tagId);
-        return "/tags";
+        return "tags";
     }
 }

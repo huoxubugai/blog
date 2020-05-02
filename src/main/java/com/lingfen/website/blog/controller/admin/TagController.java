@@ -24,12 +24,12 @@ public class TagController {
         List<Tag> tags = tagService.getAllTag();
         PageInfo<Tag> tagInfo = new PageInfo<>(tags);
         model.addAttribute("tagInfo",tagInfo);
-        return "/admin/tags";
+        return "admin/tags";
     }
 
     @GetMapping("/tags/input")
     public String input(){
-        return "/admin/tags-input";
+        return "admin/tags-input";
     }
 
     //增加tag

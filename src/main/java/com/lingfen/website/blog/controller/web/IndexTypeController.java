@@ -36,6 +36,6 @@ public class IndexTypeController {
         model.addAttribute("types", types);
         model.addAttribute("page", pageInfo);
         model.addAttribute("activeTypeId", typeId);
-        return "/types";
+        return "types";
     }
 }

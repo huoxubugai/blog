@@ -9,6 +9,6 @@ public class AboutMeController {
     @GetMapping("/about")
     public String showAboutMe(){
 
-        return "/about";
+        return "about";
     }
 }

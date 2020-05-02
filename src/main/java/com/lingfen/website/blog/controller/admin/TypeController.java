@@ -28,12 +28,12 @@ public class TypeController {
         List<Type> types = typeService.getAllType();
         PageInfo<Type> pageInfo = new PageInfo<>(types);
         model.addAttribute("pageInfo",pageInfo);
-        return "/admin/types";
+        return "admin/types";
     }
 
     @GetMapping("/types/input")
     public String input(){
-        return "/admin/types-input";
+        return "admin/types-input";
     }
 
     //增加type
