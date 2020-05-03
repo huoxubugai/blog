@@ -53,7 +53,7 @@
                 <a href="#" th:href="@{/types/{id}(id=${type.id})}" class="ui basic  button"
                    th:classappend="${type.id==activeTypeId} ? 'teal'" th:text="${type.name}">思考与感悟</a>
                 <div class="ui basic  left pointing label" th:classappend="${type.id==activeTypeId} ? 'teal'"
-                     th:text="${type.id}">24
+                     th:text="${type.blogs}">24
                 </div>
             </div>
         </div>

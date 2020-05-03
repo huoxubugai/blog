@@ -6,6 +6,19 @@
     <update id="updateTag">
         update tag set name=#{tag.name} where id=#{tag.id}
     </update>
+    <update id="updateBlogNumsByTagId">
+        UPDATE tag
+        SET blog_nums = (
+	    SELECT
+		    count(id)
+	    FROM
+		    blog
+	    WHERE
+		    tag_ids LIKE CONCAT('%', #{tagId}, '%')
+        )
+        WHERE
+	        id = #{tagId}
+    </update>
     <select id="selectTagByName" resultType="com.lingfen.website.blog.bean.Tag">
         select * from tag where name=#{name} limit 1
     </select>
@@ -29,7 +42,10 @@
     <select id="getTagByTagId" resultType="com.lingfen.website.blog.bean.Tag">
         select * from tag where id=#{tagId}
     </select>
-    <delete id="deleteTagById" >
+    <select id="getTagIds" resultMap="tagIds">
+        select id from tag
+    </select>
+    <delete id="deleteTagById">
         delete from tag where id=#{id} limit 1
     </delete>
     <resultMap id="tag" type="com.lingfen.website.blog.bean.Tag">

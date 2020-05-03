@@ -4,6 +4,7 @@ import com.lingfen.website.blog.bean.Blog;
 import com.lingfen.website.blog.search.BlogSearchBean;
 import com.lingfen.website.blog.search.BlogSearchRepository;
 import com.lingfen.website.blog.service.BlogService;
+import com.lingfen.website.blog.service.TagService;
 import org.junit.Test;
 import org.junit.runner.RunWith;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -20,6 +21,8 @@ public class BlogApplicationTests {
     BlogSearchRepository blogSearchRepository;
     @Autowired
     BlogService blogService;
+    @Autowired
+    TagService tagService;
 
     @Test
     public void contextLoads() {
@@ -88,6 +91,15 @@ public class BlogApplicationTests {
 
         for (BlogSearchBean blogSearchBean : result3) {
             System.out.println(blogSearchBean);
+        }
+    }
+
+    @Test
+    public void updateBlogNumsInTag() {
+        List<Integer> tagIds = tagService.getTagIds();
+        for (Integer tagId : tagIds) {
+            int result = tagService.updateBlogNumsByTagId(tagId);
+            System.out.println(result);
         }
     }
 }

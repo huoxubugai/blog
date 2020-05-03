@@ -25,4 +25,8 @@ public interface TagService {
     List<Integer> getTagIdsByBlogId(Long blogId);
 
     List<Tag> getTagsByTagIds(List<Integer> tagIds);
+
+    List<Integer> getTagIds();
+
+    int updateBlogNumsByTagId(Integer tagId);
 }

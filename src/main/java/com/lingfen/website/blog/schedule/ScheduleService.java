@@ -4,6 +4,7 @@ import com.lingfen.website.blog.bean.Blog;
 import com.lingfen.website.blog.search.BlogSearchBean;
 import com.lingfen.website.blog.search.BlogSearchRepository;
 import com.lingfen.website.blog.service.BlogService;
+import com.lingfen.website.blog.service.TagService;
 import com.lingfen.website.blog.service.TypeService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.scheduling.annotation.Scheduled;
@@ -24,6 +25,8 @@ public class ScheduleService {
     BlogSearchRepository blogSearchRepository;
     @Autowired
     BlogService blogService;
+    @Autowired
+    TagService tagService;
 
     /**
      * 更新type表中的博客数量，因为博客数量由于博客数的同时增加和减少没有做成原子性的
@@ -80,6 +83,19 @@ public class ScheduleService {
             System.out.println("********从Mysql向Es更新数据*********");
         for (BlogSearchBean blogSearchBean : blogSearchBeans) {
             blogSearchRepository.index(blogSearchBean);
+        }
+    }
+
+    /**
+     * 更新Tag表中对应的博客数量
+     * 因为首页用到了根据博客数量前9显示TAG
+     */
+    @Scheduled(cron = "0 0 2 * * *") //每天凌晨两点更新
+    public void updateBlogNumsInTag() {
+        List<Integer> tagIds = tagService.getTagIds();
+        for (Integer tagId : tagIds) {
+            int result = tagService.updateBlogNumsByTagId(tagId);
+            System.out.println(result);
         }
     }
 

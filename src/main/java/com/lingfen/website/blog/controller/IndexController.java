@@ -28,6 +28,7 @@ public class IndexController {
     @Autowired
     CommentService commentService;
 
+    //首页显示
     @GetMapping("/")
     public String index(Model model, @RequestParam(defaultValue = "1", value = "pageNum") Integer pageNum) {
         PageHelper.startPage(pageNum, 5);

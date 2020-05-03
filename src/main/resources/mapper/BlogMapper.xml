@@ -51,14 +51,7 @@ FROM
 WHERE
 	b.type_id = t.id
 AND b.user_id = u.id
-AND b.id IN (
-	SELECT
-		blog_id
-	FROM
-		blog_relation_tag
-	WHERE
-		tag_id = #{tagId}
-)
+AND b.tag_ids like CONCAT('%',#{tagId},'%')
     </select>
     <select id="getTotalPublishedBlogNums" resultType="java.lang.Integer">
         select count(id) as nums from blog where published=1

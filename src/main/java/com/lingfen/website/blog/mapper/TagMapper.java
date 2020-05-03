@@ -25,4 +25,8 @@ public interface TagMapper extends Mapper<Tag> {
     List<Integer> getTagIdsByBlogId(@Param("blogId") Long blogId);
 
     Tag getTagByTagId(@Param("tagId") Integer tagId);
+
+    List<Integer> getTagIds();
+
+    int updateBlogNumsByTagId(@Param("tagId") Integer tagId);
 }

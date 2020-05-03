@@ -80,5 +80,17 @@ public class TagServiceImpl implements TagService {
         return blogTags;
     }
 
+    @Override
+    public List<Integer> getTagIds() {
+        List<Integer> tagIds = tagMapper.getTagIds();
+        return tagIds;
+    }
+
+    @Override
+    public int updateBlogNumsByTagId(Integer tagId) {
+        int result = tagMapper.updateBlogNumsByTagId(tagId);
+        return result;
+    }
+
 
 }

@@ -101,23 +101,7 @@
                     <!--*/-->
                 </div>
 
-                <!--footer-->
-                <!--<div class="ui bottom attached segment" th:if="${pageInfo.pages}>1">-->
-                <!--<div class="ui middle aligned two column grid">-->
-                <!--<div class="column" th:if="${pageInfo.hasPreviousPage}">-->
-                <!--<div class="item"><a class="ui mini purple basic button"-->
-                <!--th:href="@{/(pageNum=${pageInfo.hasPreviousPage}?${pageInfo.prePage}:1)}">上一页</a>-->
-                <!--</div>-->
-                <!--</div>-->
-                <!--<div class="right aligned column" th:if="${pageInfo.hasNextPage}">-->
-                <!--<div class="item"><a class="ui mini purple basic button"-->
-                <!--th:href="@{/(pageNum=${pageInfo.hasNextPage}?${pageInfo.nextPage}:${pageInfo.pages})}">下一页</a>-->
-                <!--</div>-->
-                <!--</div>-->
-                <!--</div>-->
-                <!--</div>-->
 
-                <!--分页组件-->
                 <div class="ui attached center aligned segment">
                     <div class="ui pagination stackable menu">
                         <a class="item" th:classappend="${page.isFirstPage} ? 'active teal'"
@@ -183,7 +167,7 @@
                             <a href="#" th:href="@{/types/{id}(id=${type.id})}" target="_blank" class="item"
                                th:each="type:${types}">
                                 <span th:text="${type.name}">学习日志</span>
-                                <div class="ui purple basic left pointing label">13</div>
+                                <div class="ui purple basic left pointing label" th:text="${type.blogs}">13</div>
                             </a>
                         </div>
                     </div>
@@ -208,7 +192,7 @@
                         <a href="#" th:href="@{/tags/{id}(id=${tag.id})}" target="_blank"
                            class="ui purple basic left pointing label m-margin-tb-tiny" th:each="tag : ${tags}">
                             <span th:text="${tag.name}">方法论</span>
-                            <div class="detail">23</div>
+                            <div class="detail" th:text="${tag.blogNums}">3</div>
                         </a>
                     </div>
                 </div>
@@ -229,7 +213,7 @@
                 </div>
 
                 <!--二维码-->
-                <h4 class="ui horizontal divider header m-margin-top-large">添加作者</h4>
+                <h4 class="ui horizontal divider header m-margin-top-large">联系作者</h4>
                 <div class="ui centered card" style="width: 11em">
                     <img src="../static/images/wechat.jpg" th:src="@{/images/wechat.jpg}" alt=""
                          class="ui rounded image">

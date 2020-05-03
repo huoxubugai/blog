@@ -6,6 +6,7 @@ import com.lingfen.website.blog.bean.Blog;
 import com.lingfen.website.blog.bean.Tag;
 import com.lingfen.website.blog.bean.Type;
 import com.lingfen.website.blog.bean.User;
+import com.lingfen.website.blog.service.BlogRelationTag;
 import com.lingfen.website.blog.service.BlogService;
 import com.lingfen.website.blog.service.TagService;
 import com.lingfen.website.blog.service.TypeService;
@@ -34,6 +35,8 @@ public class BlogController {
     TypeService typeService;
     @Autowired
     TagService tagService;
+    @Autowired
+    BlogRelationTag blogRelationTag;
 
     int oldTypeId;//更新博客时，需要对oldTypeId对应的博客数量减一，再对newTypeId对应的博客数量加一
     @GetMapping("/blogs")
@@ -79,7 +82,8 @@ public class BlogController {
         if (blog.getId() == null) {
             blog.setCreateTime(new Date());
             result = blogService.savaBlog(blog); //拿不到id时则表示是新增博客
-            int increseResult = typeService.increaseBlogNumsByTypeId(blog.getTypeId()); //新增博客的同时对type表中的博客数量加1
+//            int increaseTagResult=blogRelationTag.update
+            int increseTypeResult = typeService.increaseBlogNumsByTypeId(blog.getTypeId()); //新增博客的同时对type表中的博客数量加1
         } else {
             result = blogService.updateBlog(blog);
             int newTypeId = blog.getTypeId();
