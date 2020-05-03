@@ -30,7 +30,7 @@ public class BlogSearchController {
         PageInfo<BlogSearchBean> page = new PageInfo<>(searchBlogs);
         model.addAttribute("page", page);
         model.addAttribute("query", query);
-        return "/search";
+        return "search";
     }
 
     private void setOtherContent(List<BlogSearchBean> blogSearchBeans) {

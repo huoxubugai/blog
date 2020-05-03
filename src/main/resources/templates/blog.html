@@ -42,7 +42,7 @@
         <div class="ui top attached segment">
             <div class="ui horizontal link list">
                 <div class="item">
-                    <img src="https://unsplash.it/100/100?image=1005" alt=""
+                    <img src="https://s1.ax1x.com/2020/05/02/Jj88UJ.jpg" alt=""
                          class="ui avatar image">
                     <div class="content"><a href="#" class="header" th:text="${user.nickname}">零分</a></div>
                 </div>
@@ -192,7 +192,7 @@
                         <h3 class="ui dividing header">评论</h3>
                         <div class="comment" th:each="comment : ${comments}">
                             <a class="avatar">
-                                <img src="https://unsplash.it/100/100?image=1005" th:src="@{${comment.avatar}}">
+                                <img src="https://s1.ax1x.com/2020/05/02/Jj88UJ.jpg" th:src="@{${comment.avatar}}">
                             </a>
                             <div class="content">
                                 <a class="author">
@@ -217,7 +217,8 @@
                             <div class="comments" th:if="${#arrays.length(comment.replyComments)}>0">
                                 <div class="comment" th:each="reply : ${comment.replyComments}">
                                     <a class="avatar">
-                                        <img src="https://unsplash.it/100/100?image=1005" th:src="@{${reply.avatar}}">
+                                        <img src="https://s1.ax1x.com/2020/05/02/Jj88UJ.jpg"
+                                             th:src="@{${reply.avatar}}">
                                     </a>
                                     <div class="content">
                                         <a class="author">
