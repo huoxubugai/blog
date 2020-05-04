@@ -32,7 +32,7 @@ public class IndexController {
     @GetMapping("/")
     public String index(Model model, @RequestParam(defaultValue = "1", value = "pageNum") Integer pageNum) {
         PageHelper.startPage(pageNum, 5);
-        List<PreviewBlog> previewBlogs = blogService.getPreviewBlog();//获得首页的博客预览信息
+        List<PreviewBlog> previewBlogs = blogService.getPreviewBlog();//获得首页的博客预览信息,并按访问量从高到低排序
         List<Type> types = typeService.getPreViewType(4); //获得博客数量前四的type
         List<Tag> tags = tagService.getPreViewTag(9);//获得博客数量前9的tag
         List<RecommendPreviewBlog> recommendPreviewBlogs = blogService.getRecommendPreviewBlog(4);

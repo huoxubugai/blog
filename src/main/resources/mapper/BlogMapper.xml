@@ -18,6 +18,7 @@
         t.name as type_name,u.avatar as user_avatar,u.nickname
         from blog b,type t,user u
         where b.type_id=t.id and b.user_id=u.id
+        order by views desc
     </select>
     <select id="getRecommendPreviewBlog" resultMap="recommendPreviewBlog">
       select id,title,description
