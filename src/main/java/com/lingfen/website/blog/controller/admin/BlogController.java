@@ -39,6 +39,7 @@ public class BlogController {
     BlogRelationTag blogRelationTag;
 
     int oldTypeId;//更新博客时，需要对oldTypeId对应的博客数量减一，再对newTypeId对应的博客数量加一
+
     @GetMapping("/blogs")
     public String listBlogs(Model model, @RequestParam(defaultValue = "1", value = "pageNum") Integer pageNum) {
         PageHelper.startPage(pageNum, 5);
@@ -72,17 +73,13 @@ public class BlogController {
     //新增/修改博客
     @PostMapping("/blogs")
     public String addOrUpdateBlog(Blog blog, RedirectAttributes attributes, HttpSession httpSession) {
-//        blog.setUser((User)httpSession.getAttribute("user"));
         User user = (User) httpSession.getAttribute("user");
-//        blog.setTypeId(blog.getType().getId());
         blog.setUserId(user.getId());
-//        blog.setCreateTime(new Date());
         blog.setUpdateTime(new Date());
         int result = 0;
         if (blog.getId() == null) {
             blog.setCreateTime(new Date());
             result = blogService.savaBlog(blog); //拿不到id时则表示是新增博客
-//            int increaseTagResult=blogRelationTag.update
             int increseTypeResult = typeService.increaseBlogNumsByTypeId(blog.getTypeId()); //新增博客的同时对type表中的博客数量加1
         } else {
             result = blogService.updateBlog(blog);
@@ -108,20 +105,7 @@ public class BlogController {
         model.addAttribute("blog", blog);
         model.addAttribute("types", types);
         model.addAttribute("tags", tags);
-//        model.addAttribute("blogTags", blogTags);
-//        return "admin/blogs-update";
         return "admin/blogs-input";
+
     }
-
-
-//    @PostMapping("/blogs/update")
-////    public String editPost(Blog blog,RedirectAttributes attributes) {
-////        int result = blogService.updateBlog(blog);
-////        if(result!=0)
-////            attributes.addFlashAttribute("message", "修改成功");
-////        else
-////            attributes.addFlashAttribute("message", "修改失败");
-////        return "redirect:/admin/blogs";
-////    }
-
 }
