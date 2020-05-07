@@ -6,13 +6,19 @@ import com.lingfen.website.blog.bean.*;
 import com.lingfen.website.blog.bean.helpbean.PreviewBlog;
 import com.lingfen.website.blog.bean.helpbean.RecommendPreviewBlog;
 import com.lingfen.website.blog.service.*;
+import com.lingfen.website.blog.utils.IpRecordUtil;
+import com.lingfen.website.blog.utils.IpToAddressUtil;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.http.HttpRequest;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestParam;
 
+import javax.servlet.http.HttpServletRequest;
 import java.util.List;
 
 @Controller
@@ -30,7 +36,7 @@ public class IndexController {
 
     //首页显示
     @GetMapping("/")
-    public String index(Model model, @RequestParam(defaultValue = "1", value = "pageNum") Integer pageNum) {
+    public String index(Model model, @RequestParam(defaultValue = "1", value = "pageNum") Integer pageNum, HttpServletRequest request) {
         PageHelper.startPage(pageNum, 5);
         List<PreviewBlog> previewBlogs = blogService.getPreviewBlog();//获得首页的博客预览信息,并按访问量从高到低排序
         List<Type> types = typeService.getPreViewType(4); //获得博客数量前四的type
