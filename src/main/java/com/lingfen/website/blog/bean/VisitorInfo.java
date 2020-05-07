@@ -3,6 +3,7 @@ package com.lingfen.website.blog.bean;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
+import java.util.Date;
 
 public class VisitorInfo {
     @Id
@@ -11,6 +12,15 @@ public class VisitorInfo {
     private String ip;
     private String addressInfo;
     private Integer visitTimes;
+    private Date time;
+
+    public Date getTime() {
+        return time;
+    }
+
+    public void setTime(Date time) {
+        this.time = time;
+    }
 
     public Integer getId() {
         return id;

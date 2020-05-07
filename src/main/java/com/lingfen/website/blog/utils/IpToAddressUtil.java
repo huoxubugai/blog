@@ -14,6 +14,9 @@ public class IpToAddressUtil {
     private static final String KEY = "HIFBZ-VIJKD-AP74C-PZVHV-U7KH5-2ABLY";
 
     public static String getCityInfo(String ip) {
+        if ("127.0.0.1".equals(ip)) {
+            return "内网IP";
+        }
         String s = sendGet(ip, KEY);
         Map map = JSONObject.parseObject(s, Map.class);
         String message = (String) map.get("message");

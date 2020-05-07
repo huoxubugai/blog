@@ -4,7 +4,7 @@
         "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
 <mapper namespace="com.lingfen.website.blog.mapper.VisitorInfoMapper">
     <update id="updateVisitTimes">
-      update visitor_info v set v.visit_times=v.visit_times+1 where id=#{id}
+      update visitor_info v set v.visit_times=v.visit_times+1 ,v.time=#{updateTime} where id=#{id}
     </update>
 
     <select id="searchIpIsExist" resultType="java.lang.Integer">

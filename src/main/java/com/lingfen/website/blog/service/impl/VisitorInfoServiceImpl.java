@@ -6,6 +6,8 @@ import com.lingfen.website.blog.service.VisitorInfoService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
+import java.util.Date;
+
 @Service
 public class VisitorInfoServiceImpl implements VisitorInfoService {
     @Autowired
@@ -22,10 +24,12 @@ public class VisitorInfoServiceImpl implements VisitorInfoService {
             visitorInfo.setIp(ip);
             visitorInfo.setAddressInfo(cityInfo);
             visitorInfo.setVisitTimes(1);
+            visitorInfo.setTime(new Date());
             insertResult = visitorInfoMapper.insertSelective(visitorInfo);
         } else {
-            //存在 只需更新访问次数即可
-            updateResult = visitorInfoMapper.updateVisitTimes(id);
+            //存在 只需更新访问次数和访问时间即可
+            Date updateTime = new Date();
+            updateResult = visitorInfoMapper.updateVisitTimes(id, updateTime);
         }
         return insertResult;
     }

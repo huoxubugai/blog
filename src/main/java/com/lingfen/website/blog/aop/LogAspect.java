@@ -17,8 +17,7 @@ import java.util.Arrays;
 @Aspect
 @Component
 public class LogAspect {
-    @Autowired
-    VisitorInfoService visitorInfoService;
+
 
     Logger logger = LoggerFactory.getLogger(this.getClass());
 
@@ -46,30 +45,7 @@ public class LogAspect {
         logger.info("Request:{}",requstLog);
     }
 
-    @Before("saveVisitorInfo()")
-    public void before() {
-        ServletRequestAttributes attributes = (ServletRequestAttributes) RequestContextHolder.getRequestAttributes();
-        HttpServletRequest request = attributes.getRequest();
-        String ip = request.getRemoteAddr();
-        if ("0:0:0:0:0:0:0:1".equals(ip)) {
-            ip = "127.0.0.1";
-        }
-        long time = System.currentTimeMillis();
-        String cityInfo = IpToAddressUtil.getCityInfo(ip);
-        if (cityInfo != null) {
-            long endtime = System.currentTimeMillis() - time;
-            logger.info("通过ip查询城市信息的时间花费（ms）：" + endtime);
-            //保存进数据库
-            int insertLine = visitorInfoService.saveVisitorInfo(ip, cityInfo);
-            if (insertLine != 0) {
-                logger.info("目前不存在该ip信息，现已插入数据库：" + ip);
-            } else {
-                logger.info("存在该ip信息，对访问次数进行更新");
-            }
-        } else {
-            logger.info("请求ip的位置信息出错");
-        }
-    }
+
     @After("log()")
     public void doAfter(){
 //        logger.info("------------------之后————--——————");
