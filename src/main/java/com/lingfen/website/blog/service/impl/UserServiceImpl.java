@@ -14,7 +14,7 @@ public class UserServiceImpl implements UserService {
     UserMapper userMapper;
     @Override
     public User checkUser(String username, String password) {
-        User user = userMapper.getUserByUsername(username);
+        User user = userMapper.getUserByUsername(username); //先拿到用户，再比较密码，可以避免sql注入
         return user==null?null:user.getPassword().equals(MD5util.code(password))?user:null;
     }
 
