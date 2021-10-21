@@ -65,4 +65,7 @@ public class LogAspect {
                     '}';
         }
     }
+    public void test(){
+
+    }
 }
